@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://crf4jytp017jl"]
+
+[ext_resource type="Script" path="res://Scripts/playerSelection.gd" id="1_p0kxw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5bnxi"]
+font_size = 48
+
+[node name="PlayerSelectMenu" type="Node2D"]
+script = ExtResource("1_p0kxw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PressToJoinLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -282.0
+offset_top = -340.0
+offset_right = 282.0
+offset_bottom = -273.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press any button to join:"
+label_settings = SubResource("LabelSettings_5bnxi")
+
+[node name="PressToReadyLabel" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -376.5
+offset_top = -33.5
+offset_right = 376.5
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press Start/Enter to toggle ready"
+label_settings = SubResource("LabelSettings_5bnxi")
+
+[node name="PlayerUIGrid" type="GridContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -725.0
+offset_top = -350.0
+offset_right = 725.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/h_separation = 150
+columns = 4
