@@ -1,0 +1,3 @@
+extends HoldableObject
+
+var currentIngredients = []
