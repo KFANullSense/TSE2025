@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkar3yg0sbhhv"]
+
+[ext_resource type="Script" uid="uid://co6jvmgijgwwm" path="res://Scripts/Counter Types/bin.gd" id="1_ivu3i"]
+[ext_resource type="PackedScene" uid="uid://c586hsnn8w3sd" path="res://Art Assets/Bin.fbx" id="2_441dw"]
+[ext_resource type="ArrayMesh" uid="uid://cqoxx1yjqrt85" path="res://Art Assets/PC Computer - Overcooked - Cheese/Cheese/Cheese_Raw.obj" id="3_53ipw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i5ibn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a6mxr"]
+size = Vector3(1, 1, 2.03516)
+
+[node name="Test" type="Node2D"]
+
+[node name="Test_FallingCheese" type="RigidBody3D" parent="." groups=["Ingredient", "Player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51108, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Test_FallingCheese"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.164592, 0)
+shape = SubResource("BoxShape3D_i5ibn")
+
+[node name="Cheese" type="Area3D" parent="Test_FallingCheese" groups=["Player"]]
+
+[node name="CheeseRaw" type="MeshInstance3D" parent="Test_FallingCheese/Cheese"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0981366, 0, -0.0786821)
+mesh = ExtResource("3_53ipw")
+skeleton = NodePath("../../..")
+
+[node name="Bin" type="Area3D" parent="."]
+script = ExtResource("1_ivu3i")
+
+[node name="Bin" parent="Bin" instance=ExtResource("2_441dw")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bin"]
+transform = Transform3D(0.019666, 0, 0, 0, 0.0160582, 0, 0, 0, 0.0088472, -0.251645, 0.00209616, 0.108223)
+shape = SubResource("BoxShape3D_a6mxr")
+
+[connection signal="body_entered" from="Test_FallingCheese/Cheese" to="Bin" method="_on_cheese_body_entered"]
+[connection signal="area_entered" from="Bin" to="Bin" method="_on_area_entered"]
+[connection signal="body_entered" from="Bin" to="Bin" method="_on_body_entered"]
