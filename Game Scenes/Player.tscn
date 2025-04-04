@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c826g7h8boo2y"]
+[gd_scene load_steps=7 format=3 uid="uid://c826g7h8boo2y"]
 
 [ext_resource type="Script" uid="uid://x43ytercktro" path="res://Game Scenes/playerMovement.gd" id="1_0fxis"]
 [ext_resource type="Script" uid="uid://blyaky0rts7c5" path="res://Scripts/interactionHandler.gd" id="2_dceni"]
@@ -6,6 +6,9 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_he7y4"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_he7y4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dceni"]
+albedo_color = Color(0, 1, 1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_dceni"]
 
@@ -17,6 +20,7 @@ shape = SubResource("CapsuleShape3D_he7y4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_he7y4")
+surface_material_override/0 = SubResource("StandardMaterial3D_dceni")
 
 [node name="nose" type="Node3D" parent="."]
 
