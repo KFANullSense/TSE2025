@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1rdjm1tw1f65"]
+
+[ext_resource type="ArrayMesh" uid="uid://cekf1pxs311du" path="res://Art Assets/PC Computer - Overcooked - Onion/Onion/Onion.obj" id="1_7pwy8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7pwy8"]
+size = Vector3(1, 0.945557, 1)
+
+[node name="Onion" type="RigidBody3D" groups=["Ingredient"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.998068, 0, 0, 0, 0.998068, 0, 0, 0, 0.998068, 0, 0.468307, 0)
+shape = SubResource("BoxShape3D_7pwy8")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="Onion" type="MeshInstance3D" parent="Area3D"]
+mesh = ExtResource("1_7pwy8")
+skeleton = NodePath("../../..")

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://daai77ykgwp45"]
+
+[ext_resource type="ArrayMesh" uid="uid://cqoxx1yjqrt85" path="res://Art Assets/PC Computer - Overcooked - Cheese/Cheese/Cheese_Raw.obj" id="1_vmmie"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_441dw"]
+size = Vector3(1, 0.486206, 1.16028)
+
+[node name="Cheese" type="RigidBody3D" groups=["Ingredient"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Ingredient"]]
+transform = Transform3D(1.02599, 0, 0, 0, 0.698658, 0, 0, 0, 1.54714, 0, 0.179483, 0.123986)
+shape = SubResource("BoxShape3D_441dw")
+
+[node name="Cheese" type="Area3D" parent="." groups=["Ingredient"]]
+
+[node name="CheeseRaw" type="MeshInstance3D" parent="Cheese" groups=["Ingredient"]]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+mesh = ExtResource("1_vmmie")
+skeleton = NodePath("../../..")

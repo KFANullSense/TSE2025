@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqbedtbplh0df"]
+
+[ext_resource type="PackedScene" uid="uid://bjj66ilde6751" path="res://Art Assets/Basic_Cabinet_No_Handle.fbx" id="1_crfrv"]
+[ext_resource type="ArrayMesh" uid="uid://xy7pinqlmbma" path="res://Art Assets/PC Computer - Overcooked - Tomato/Tomato/Tomato.obj" id="2_4rxcf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0kf8d"]
+size = Vector3(1.13351, 0.515503, 0.744019)
+
+[node name="TomatoBin" type="StaticBody3D" groups=["Produce", "TomatoBin"]]
+transform = Transform3D(100, 0, 0, 0, 46.7237, 0, 0, 0, 100, 0, 0, 0)
+
+[node name="Basic_Cabinet_No_Handle" parent="." instance=ExtResource("1_crfrv")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.01, 0, 0, 0, 0.018, 0, 0, 0, 0.018, 0.000484643, 0.00436047, 0.000615418)
+shape = SubResource("BoxShape3D_0kf8d")
+
+[node name="Tomato" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.01, 0, 0, 0, 0.0214024, 0, 0, 0, 0.01, -0.000233718, -0.00528637, -0.000268213)
+mesh = ExtResource("2_4rxcf")
+skeleton = NodePath("../..")

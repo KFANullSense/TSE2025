@@ -14,8 +14,17 @@ func _physics_process(delta: float) -> void:
 				store()
 			elif (detect() == "Bin"):
 				delete()
+			else:
+				pass
+		elif (!holding) and (is_colliding()):
+			detect()
+			if (detect() == null):
+				pickUp()
+			elif(detect() == "Produce"):
+				produce()
+				pickUp()
 		else:
-			pickUp()
+			pass
 	
 	#print(holding)
 	#print(inventory)
@@ -53,6 +62,11 @@ func detect():
 	elif (hit.is_in_group("Bin")):
 		var type = "Bin"
 		return type
+	elif (hit.is_in_group("Produce")):
+		var type = "Produce"
+		return type
+	else:
+		return null
 	
 func store():
 	if is_colliding() and holding:
@@ -64,6 +78,47 @@ func store():
 			holding = false
 			print("counter put down")
 			
+var loader = null
+func produce():
+	if is_colliding():
+		var hit = get_collider()
+		if (hit.is_in_group("Produce")):
+			if (hit.is_in_group("CheeseBin")):
+				var loader = preload("res://Prefab Objects/cheese.tscn")
+				var instance = loader.instantiate()
+				instance.position = instance.position + Vector3(0,0.01,0)
+				var parentPath = get_node("/root/Test/CheeseBin")
+				parentPath.add_child(instance)
+				print("produced cheese")
+			elif (hit.is_in_group("TomatoBin")):
+				var loader = preload("res://Prefab Objects/tomato.tscn")
+				var instance = loader.instantiate()
+				instance.position = instance.position + Vector3(0,0.01,0)
+				var parentPath = get_node("/root/Test/TomatoBin")
+				parentPath.add_child(instance)
+				print("produced tomato")
+			elif (hit.is_in_group("MushroomBin")):
+				var loader = preload("res://Prefab Objects/mushroom.tscn")
+				var instance = loader.instantiate()
+				instance.position = instance.position + Vector3(0,0.01,0)
+				var parentPath = get_node("/root/Test/MushroomBin")
+				parentPath.add_child(instance)
+				print("produced mushroom")
+			elif (hit.is_in_group("OnionBin")):
+				var loader = preload("res://Prefab Objects/onion.tscn")
+				var instance = loader.instantiate()
+				instance.position = instance.position + Vector3(0,0.01,0)
+				var parentPath = get_node("/root/Test/OnionBin")
+				parentPath.add_child(instance)
+				print("produced onion")
+			elif (hit.is_in_group("PotatoBin")):
+				var loader = preload("res://Prefab Objects/potato.tscn")
+				var instance = loader.instantiate()
+				instance.position = instance.position + Vector3(0,0.01,0)
+				var parentPath = get_node("/root/Test/PotatoBin")
+				parentPath.add_child(instance)
+				print("produced potato")
+				
 func delete():
 	if is_colliding() and holding:
 		var hit = get_collider()

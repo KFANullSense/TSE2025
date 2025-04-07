@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkj835yojrth0"]
+
+[ext_resource type="ArrayMesh" uid="uid://dl53qx1pqkjh5" path="res://Art Assets/PC Computer - Overcooked - Mushroom/Mushroom.obj" id="1_hypgr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hypgr"]
+size = Vector3(1, 0.63501, 0.840088)
+
+[node name="Mushroom" type="RigidBody3D" groups=["Ingredient"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.00358, 0, 0, 0, 1.00358, 0, 0, 0, 1.00358, 0.0422763, 0.0216724, 0.00458872)
+shape = SubResource("BoxShape3D_hypgr")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="Mushroom" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.147462, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = ExtResource("1_hypgr")
+skeleton = NodePath("../..")

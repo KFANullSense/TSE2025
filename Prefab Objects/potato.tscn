@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://867dgpxvpwou"]
+
+[ext_resource type="ArrayMesh" uid="uid://bbl0xxeqqk3cd" path="res://Art Assets/PC Computer - Overcooked - Potato/Potato/Chips_Raw.obj" id="1_t3hck"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t3hck"]
+size = Vector3(1, 0.854492, 1)
+
+[node name="Potato" type="RigidBody3D" groups=["Ingredient"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.396109, 0)
+shape = SubResource("BoxShape3D_t3hck")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="ChipsRaw" type="MeshInstance3D" parent="Area3D"]
+mesh = ExtResource("1_t3hck")
+skeleton = NodePath("../../..")

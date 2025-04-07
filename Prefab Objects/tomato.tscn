@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d383qsi1qj26f"]
+
+[ext_resource type="ArrayMesh" uid="uid://xy7pinqlmbma" path="res://Art Assets/PC Computer - Overcooked - Tomato/Tomato/Tomato.obj" id="1_u0uo6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u0uo6"]
+size = Vector3(1, 0.878906, 1)
+
+[node name="Tomato" type="RigidBody3D" groups=["Ingredient"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.456983, 0)
+shape = SubResource("BoxShape3D_u0uo6")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="Tomato" type="MeshInstance3D" parent="Area3D"]
+mesh = ExtResource("1_u0uo6")
+skeleton = NodePath("../../..")

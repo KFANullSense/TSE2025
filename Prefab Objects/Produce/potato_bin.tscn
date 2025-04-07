@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cteawyqdnsqor"]
+
+[ext_resource type="PackedScene" uid="uid://bjj66ilde6751" path="res://Art Assets/Basic_Cabinet_No_Handle.fbx" id="1_x1yca"]
+[ext_resource type="ArrayMesh" uid="uid://bbl0xxeqqk3cd" path="res://Art Assets/PC Computer - Overcooked - Potato/Potato/Chips_Raw.obj" id="2_g3p74"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0kf8d"]
+size = Vector3(1.13351, 0.515503, 0.744019)
+
+[node name="PotatoBin" type="StaticBody3D" groups=["PotatoBin", "Produce"]]
+transform = Transform3D(100, 0, 0, 0, 46.7237, 0, 0, 0, 100, 0, 0, 0)
+
+[node name="Basic_Cabinet_No_Handle" parent="." instance=ExtResource("1_x1yca")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.01, 0, 0, 0, 0.018, 0, 0, 0, 0.018, 0.000484643, 0.00436047, 0.000615418)
+shape = SubResource("BoxShape3D_0kf8d")
+
+[node name="ChipsRaw" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.01, 0, 0, 0, 0.0214024, 0, 0, 0, 0.01, -0.000142101, -0.00391883, 3.10506e-05)
+mesh = ExtResource("2_g3p74")
+skeleton = NodePath("../..")

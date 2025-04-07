@@ -25,6 +25,12 @@ window/size/viewport_height=540
 Ingredient=""
 Counter=""
 Bin=""
+CheeseBin=""
+Produce=""
+OnionBin=""
+TomatoBin=""
+MushroomBin=""
+PotatoBin=""
 
 [input]
 

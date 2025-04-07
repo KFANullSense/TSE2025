@@ -1,18 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://dkar3yg0sbhhv"]
+[gd_scene load_steps=13 format=3 uid="uid://dkar3yg0sbhhv"]
 
 [ext_resource type="PackedScene" uid="uid://bwbtksyfdsxun" path="res://Prefab Objects/CounterTops/bin.tscn" id="2_a6mxr"]
 [ext_resource type="PackedScene" uid="uid://dko6f4vllq8kr" path="res://Prefab Objects/CounterTops/counter.tscn" id="3_i5ibn"]
 [ext_resource type="PackedScene" uid="uid://c826g7h8boo2y" path="res://Game Scenes/Player.tscn" id="4_441dw"]
 [ext_resource type="PackedScene" uid="uid://daai77ykgwp45" path="res://Prefab Objects/cheese.tscn" id="4_esyyw"]
-[ext_resource type="PackedScene" uid="uid://dkj835yojrth0" path="res://Prefab Objects/mushroom.tscn" id="5_w44a7"]
 [ext_resource type="PackedScene" uid="uid://6l5l4ym0stwd" path="res://Prefab Objects/Produce/cheese_bin.tscn" id="6_0kf8d"]
-[ext_resource type="PackedScene" uid="uid://d383qsi1qj26f" path="res://Prefab Objects/tomato.tscn" id="6_l4am2"]
 [ext_resource type="PackedScene" uid="uid://cqbedtbplh0df" path="res://Prefab Objects/Produce/tomato_bin.tscn" id="7_ng63d"]
-[ext_resource type="PackedScene" uid="uid://b1rdjm1tw1f65" path="res://Prefab Objects/onion.tscn" id="7_qixud"]
 [ext_resource type="PackedScene" uid="uid://c1m0a7huoy2xm" path="res://Prefab Objects/Produce/mushroom_bin.tscn" id="8_1krkb"]
+[ext_resource type="ArrayMesh" uid="uid://dl53qx1pqkjh5" path="res://Art Assets/PC Computer - Overcooked - Mushroom/Mushroom.obj" id="8_ng63d"]
 [ext_resource type="PackedScene" uid="uid://byjm4omcm7p0p" path="res://Prefab Objects/Produce/onion_bin.tscn" id="9_w44a7"]
 [ext_resource type="PackedScene" uid="uid://cteawyqdnsqor" path="res://Prefab Objects/Produce/potato_bin.tscn" id="10_l4am2"]
-[ext_resource type="PackedScene" uid="uid://867dgpxvpwou" path="res://Prefab Objects/potato.tscn" id="13_w44a7"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_441dw"]
 
@@ -47,17 +44,16 @@ transform = Transform3D(110, 0, 0, 0, 110, 0, 0, 0, 110, 2.83123, 0, 2.3442)
 [node name="Cheese" parent="." instance=ExtResource("4_esyyw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2436, 0.398468, -3.94767)
 
-[node name="Mushroom" parent="." instance=ExtResource("5_w44a7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.30705, 0.577974, 0)
+[node name="Mushroom" type="RigidBody3D" parent="." groups=["Ingredient"]]
 
-[node name="Tomato" parent="." instance=ExtResource("6_l4am2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.35052, 0.16444, -1.47096)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mushroom"]
 
-[node name="Onion" parent="." instance=ExtResource("7_qixud")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.06005, 0.14297, 0)
+[node name="Area3D" type="Area3D" parent="Mushroom"]
 
-[node name="Potato" parent="." instance=ExtResource("13_w44a7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.937435, 0.332908, 0)
+[node name="Mushroom" type="MeshInstance3D" parent="Mushroom/Area3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.147462, 0, 0, 0, 0.2, 2.71243, 0.326489, 0)
+mesh = ExtResource("8_ng63d")
+skeleton = NodePath("../..")
 
 [node name="CheeseBin" parent="." instance=ExtResource("6_0kf8d")]
 transform = Transform3D(100, 0, 0, 0, 46.7237, 0, 0, 0, 100, 0, 0, -3.89002)

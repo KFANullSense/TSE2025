@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwbtksyfdsxun"]
+
+[ext_resource type="PackedScene" uid="uid://c586hsnn8w3sd" path="res://Art Assets/Bin.fbx" id="1_enci0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a6mxr"]
+size = Vector3(0.669983, 0.891602, 1.52631)
+
+[sub_resource type="BoxMesh" id="BoxMesh_53ipw"]
+
+[node name="Bin" type="StaticBody3D" groups=["Bin"]]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+
+[node name="Bin" parent="." instance=ExtResource("1_enci0")]
+transform = Transform3D(1.00403, 0, 0, 0, 1.00403, 0, 0, 0, 1.00403, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.019666, 0, 0, 0, 0.0160582, 0, 0, 0, 0.0088472, -0.25394, 0.00122582, 0.108223)
+shape = SubResource("BoxShape3D_a6mxr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0150061, 0, 0, 0, 0.00789608, 0, 0, 0, 0.0130978, -0.253398, 0.00284676, 0.108439)
+visible = false
+mesh = SubResource("BoxMesh_53ipw")

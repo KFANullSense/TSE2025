@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dko6f4vllq8kr"]
+
+[ext_resource type="PackedScene" uid="uid://b02sy4lkkjawt" path="res://Art Assets/Basic_Cabinet.fbx" id="1_8bier"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_53ipw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a6mxr"]
+size = Vector3(0.513069, 0.327881, 1.43211)
+
+[node name="Counter" type="StaticBody3D" groups=["Counter"]]
+transform = Transform3D(110, 0, 0, 0, 110, 0, 0, 0, 110, 0, 0, 0)
+
+[node name="Basic_Cabinet" parent="." instance=ExtResource("1_8bier")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0150061, 0, 0, 0, 0.00789608, 0, 0, 0, 0.0130978, -0.000137682, 2.16744e-09, 0.000106215)
+visible = false
+mesh = SubResource("BoxMesh_53ipw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.019666, 0, 0, 0, 0.0160582, 0, 0, 0, 0.0088472, 6.57919e-05, 0.00239586, 0.00135004)
+shape = SubResource("BoxShape3D_a6mxr")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
