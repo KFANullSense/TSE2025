@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkar3yg0sbhhv"]
+[gd_scene load_steps=11 format=3 uid="uid://dkar3yg0sbhhv"]
 
+[ext_resource type="Script" uid="uid://co6jvmgijgwwm" path="res://Scripts/Counter Types/bin.gd" id="1_ivu3i"]
 [ext_resource type="PackedScene" uid="uid://c586hsnn8w3sd" path="res://Art Assets/Bin.fbx" id="2_441dw"]
 [ext_resource type="ArrayMesh" uid="uid://cqoxx1yjqrt85" path="res://Art Assets/PC Computer - Overcooked - Cheese/Cheese/Cheese_Raw.obj" id="3_53ipw"]
 [ext_resource type="PackedScene" uid="uid://c826g7h8boo2y" path="res://Game Scenes/Player.tscn" id="4_441dw"]
@@ -38,6 +39,7 @@ shape = SubResource("BoxShape3D_53ipw")
 
 [node name="Bin" type="StaticBody3D" parent="." groups=["Bin"]]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 21.8142, 0, -7.67)
+script = ExtResource("1_ivu3i")
 
 [node name="Bin" parent="Bin" instance=ExtResource("2_441dw")]
 transform = Transform3D(1.00403, 0, 0, 0, 1.00403, 0, 0, 0, 1.00403, 0, 0, 0)
