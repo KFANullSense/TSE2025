@@ -16,6 +16,7 @@ size = Vector3(0.669983, 0.891602, 1.52631)
 [sub_resource type="BoxMesh" id="BoxMesh_53ipw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_441dw"]
+size = Vector3(1, 0.486206, 1)
 
 [node name="Test" type="Node3D"]
 
@@ -52,7 +53,7 @@ visible = false
 mesh = SubResource("BoxMesh_53ipw")
 
 [node name="Counter" type="StaticBody3D" parent="." groups=["Counter"]]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+transform = Transform3D(110, 0, 0, 0, 110, 0, 0, 0, 110, 0, 0, 0)
 
 [node name="Basic_Cabinet" parent="Counter" instance=ExtResource("5_53ipw")]
 
@@ -62,21 +63,21 @@ visible = false
 mesh = SubResource("BoxMesh_53ipw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Counter"]
-transform = Transform3D(0.019666, 0, 0, 0, 0.0160582, 0, 0, 0, 0.0088472, 0, 0, 0)
+transform = Transform3D(0.019666, 0, 0, 0, 0.0160582, 0, 0, 0, 0.0088472, 0, -0.00213031, 0)
 shape = SubResource("BoxShape3D_a6mxr")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="Counter"]
 
 [node name="Test_FallingCheese" type="RigidBody3D" parent="." groups=["Ingredient"]]
-transform = Transform3D(1, 0, 0, 0, 1.503, 0, 0, 0, 1.377, -0.249896, -2.10736, 0.0736628)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.52952, 0.354501, -0.00848627)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Test_FallingCheese" groups=["Ingredient"]]
-transform = Transform3D(1.02599, 0, 0, 0, 0.698658, 0, 0, 0, 1.54714, 2.12441, 2.23007, -0.104186)
+transform = Transform3D(1.02599, 0, 0, 0, 0.698658, 0, 0, 0, 1.54714, 0, 0.179483, 0)
 shape = SubResource("BoxShape3D_441dw")
 
 [node name="Cheese" type="Area3D" parent="Test_FallingCheese" groups=["Ingredient"]]
 
 [node name="CheeseRaw" type="MeshInstance3D" parent="Test_FallingCheese/Cheese" groups=["Ingredient"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1139, 2.02495, -0.0786821)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 mesh = ExtResource("3_53ipw")
 skeleton = NodePath("../../..")
