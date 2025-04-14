@@ -1,5 +1,7 @@
 extends TextureRect
 
+class_name menuPlayerUI
+
 var localDeviceID = -1
 var isReady = false
 
