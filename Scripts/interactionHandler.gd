@@ -3,29 +3,41 @@ extends RayCast3D
 @onready var hand =$"../hand"
 var inventory = null;
 var holding = false;
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
-	if (Input.is_action_just_pressed("Interact")):
-		if (holding) and (!is_colliding()):
-			putdown()
-		elif (holding) and (is_colliding()):
-			detect()
-			if (detect() == "Counter"):
-				store()
-			elif (detect() == "Bin"):
-				delete()
-			else:
-				pass
-		elif (!holding) and (is_colliding()):
-			detect()
-			if (detect() == null):
-				pickUp()
-			elif(detect() == "Produce"):
-				produce()
-				pickUp()
+
+func _input(event: InputEvent) -> void:
+	var inputDeviceID = StaticFunctions.adjustForKeyboardInput(event)
+	
+	print(get_parent().localDeviceID)
+	
+	if inputDeviceID != get_parent().localDeviceID or get_parent().localDeviceID == -1:
+		return
+
+	if (Input.is_action_just_pressed("Interact" + str(get_parent().localDeviceID))):
+		interactAction()
+
+func interactAction() -> void:
+	if (holding) and (!is_colliding()):
+		putdown()
+	elif (holding) and (is_colliding()):
+		detect()
+		if (detect() == "Counter"):
+			store()
+		elif (detect() == "Bin"):
+			delete()
 		else:
 			pass
-	
+	elif (!holding) and (is_colliding()):
+		detect()
+		if (detect() == null):
+			pickUp()
+		elif(detect() == "Produce"):
+			produce()
+			pickUp()
+	else:
+		pass
+			
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(delta: float) -> void:
 	#print(holding)
 	#print(inventory)
 	if holding and inventory != null:

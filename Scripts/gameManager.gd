@@ -71,7 +71,7 @@ func UpdateGameState(newState: int):
 func CreatePlayerInputMaps():
 	var actionList := InputMap.get_actions()
 	
-	for playerNum in range(playerDataList.size()):
+	for playerNum in range(playerDataList.size() - 1):
 		for action in range (actionList.size()):
 			if (actionList[action].begins_with("ui_")):
 				continue
