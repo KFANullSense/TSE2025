@@ -37,15 +37,18 @@ func _input(event: InputEvent) -> void:
 		var playerUI = preload("res://Prefab Scenes/menu_player_ui.tscn")
 		var playerUIInstance = playerUI.instantiate()
 		
-		##Set the player number in the scene to be accurate, and tell the player what its device ID is
+		var localPlayerData = playerData.new(localDeviceID)
+		GameManager.AddPlayerToList(localPlayerData)
+		
+		##Set the player number in the scene to be accurate
 		playerUIInstance.get_node("%PlayerNumLabel").text = "Player " + str(playerIndex + 1)
-		playerUIInstance.setDeviceID(localDeviceID)
+		playerUIInstance.setPlayerData(localPlayerData)
 		
 		##Add the instantiated UI display as a child of the grid
 		get_node("%PlayerUIGrid").add_child(playerUIInstance)
 		
-		##If there is more than one player, show the ready text
-		if (get_node("%PlayerUIGrid").get_child_count() > 1):
+		##If there is at least one player, show the ready text
+		if (get_node("%PlayerUIGrid").get_child_count() >= 1):
 			get_node("%PressToReadyLabel").show()
 		else:
 			get_node("%PressToReadyLabel").hide()

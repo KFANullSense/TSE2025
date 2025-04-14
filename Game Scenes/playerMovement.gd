@@ -1,15 +1,16 @@
 extends CharacterBody3D
 
-
 const SPEED = 5.0
 const ROTATION_SPEED = 10.0
+
+var localDeviceID: int = -1
+
 func handleMovement(delta: float):
 		# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	
-	var input_dir := Input.get_vector("leftInput", "rightInput", "upInput", "downInput")
+	var input_dir := Input.get_vector("leftInput" + str(localDeviceID), "rightInput" + str(localDeviceID), "upInput" + str(localDeviceID), "downInput" + str(localDeviceID))
 	var direction := ( Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if input_dir.length() > 0:
@@ -31,3 +32,7 @@ func handleMovement(delta: float):
 	
 func _physics_process(delta: float) -> void:
 	handleMovement(delta)
+
+
+func updateDeviceID(newID: int):
+	localDeviceID = newID
