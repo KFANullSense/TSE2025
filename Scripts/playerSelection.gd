@@ -37,7 +37,7 @@ func _input(event: InputEvent) -> void:
 		var playerUI = preload("res://Prefab Scenes/menu_player_ui.tscn")
 		var playerUIInstance = playerUI.instantiate()
 		
-		var localPlayerData = playerData.new(localDeviceID)
+		var localPlayerData = playerData.new(localDeviceID, assignPlayerColour(playerIndex))
 		GameManager.AddPlayerToList(localPlayerData)
 		
 		##Set the player number in the scene to be accurate
@@ -75,3 +75,17 @@ func getActivePlayerSize() -> int:
 			currentPlayerSize += 1
 			
 	return currentPlayerSize
+	
+func assignPlayerColour(playerNum) -> Color:
+	match playerNum + 1:
+		1:
+			return Color.RED
+		2:
+			return Color.BLUE
+		3:
+			return Color.GREEN
+		4:
+			return Color.YELLOW
+			
+	push_warning("Invalid player number while trying to assign colour, assigning red.")
+	return Color.RED

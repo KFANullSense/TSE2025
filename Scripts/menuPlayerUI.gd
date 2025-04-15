@@ -1,4 +1,4 @@
-extends TextureRect
+extends ColorRect
 
 class_name menuPlayerUI
 
@@ -7,6 +7,7 @@ var isReady = false
 
 func _ready() -> void:
 	get_node("%PlayerNumLabel").get_child(0).hide()
+	self.color = localPlayerData.playerColor
 
 func _input(event: InputEvent) -> void:
 	var inputDeviceID = StaticFunctions.adjustForKeyboardInput(event)

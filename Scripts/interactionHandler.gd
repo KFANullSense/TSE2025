@@ -37,7 +37,7 @@ func interactAction() -> void:
 		pass
 			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	#print(holding)
 	#print(inventory)
 	if holding and inventory != null:
@@ -96,35 +96,35 @@ func produce():
 		var hit = get_collider()
 		if (hit.is_in_group("Produce")):
 			if (hit.is_in_group("CheeseBin")):
-				var loader = preload("res://Prefab Objects/cheese.tscn")
+				loader = preload("res://Prefab Objects/cheese.tscn")
 				var instance = loader.instantiate()
 				instance.position = instance.position + Vector3(0,0.01,0)
 				var parentPath = get_node("/root/Test/CheeseBin")
 				parentPath.add_child(instance)
 				print("produced cheese")
 			elif (hit.is_in_group("TomatoBin")):
-				var loader = preload("res://Prefab Objects/tomato.tscn")
+				loader = preload("res://Prefab Objects/tomato.tscn")
 				var instance = loader.instantiate()
 				instance.position = instance.position + Vector3(0,0.01,0)
 				var parentPath = get_node("/root/Test/TomatoBin")
 				parentPath.add_child(instance)
 				print("produced tomato")
 			elif (hit.is_in_group("MushroomBin")):
-				var loader = preload("res://Prefab Objects/mushroom.tscn")
+				loader = preload("res://Prefab Objects/mushroom.tscn")
 				var instance = loader.instantiate()
 				instance.position = instance.position + Vector3(0,0.01,0)
 				var parentPath = get_node("/root/Test/MushroomBin")
 				parentPath.add_child(instance)
 				print("produced mushroom")
 			elif (hit.is_in_group("OnionBin")):
-				var loader = preload("res://Prefab Objects/onion.tscn")
+				loader = preload("res://Prefab Objects/onion.tscn")
 				var instance = loader.instantiate()
 				instance.position = instance.position + Vector3(0,0.01,0)
 				var parentPath = get_node("/root/Test/OnionBin")
 				parentPath.add_child(instance)
 				print("produced onion")
 			elif (hit.is_in_group("PotatoBin")):
-				var loader = preload("res://Prefab Objects/potato.tscn")
+				loader = preload("res://Prefab Objects/potato.tscn")
 				var instance = loader.instantiate()
 				instance.position = instance.position + Vector3(0,0.01,0)
 				var parentPath = get_node("/root/Test/PotatoBin")

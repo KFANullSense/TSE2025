@@ -56,6 +56,8 @@ func SpawnPlayers(spawnPoints, parentNode):
 		localPlayer.updateDeviceID(playerDataList[i].localDeviceID)
 		localPlayer.position = spawnPoints[i].position
 		
+		localPlayer.get_node("PlayerMesh").mesh.material.albedo_color = playerDataList[i].playerColor
+		
 		parentNode.add_child(localPlayer)
 		
 		playerObjectList.append(localPlayer)
@@ -71,7 +73,7 @@ func UpdateGameState(newState: int):
 func CreatePlayerInputMaps():
 	var actionList := InputMap.get_actions()
 	
-	for playerNum in range(playerDataList.size() - 1):
+	for playerNum in range(playerDataList.size()):
 		for action in range (actionList.size()):
 			if (actionList[action].begins_with("ui_")):
 				continue
