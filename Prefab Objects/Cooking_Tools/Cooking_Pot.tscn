@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bktxv0k6fxd45"]
+
+[ext_resource type="PackedScene" uid="uid://c1u5xpq3ransc" path="res://Art Assets/CookPot.fbx" id="1_5pn2d"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_d0s45"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.23
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_axwdh"]
+size = Vector3(0.772215, 0.487915, 0.576538)
+
+[node name="CookingPot" type="RigidBody3D"]
+
+[node name="1Ingredient" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.240214, 0)
+visible = false
+mesh = SubResource("CylinderMesh_d0s45")
+
+[node name="2Ingredient" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.274297, 0)
+visible = false
+mesh = SubResource("CylinderMesh_d0s45")
+
+[node name="3Ingredient" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34166, 0)
+visible = false
+mesh = SubResource("CylinderMesh_d0s45")
+
+[node name="CookPot" parent="." instance=ExtResource("1_5pn2d")]
+transform = Transform3D(110, 0, 0, 0, 110, 0, 0, 0, 110, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00584888, 0.256042, 0.000183105)
+shape = SubResource("BoxShape3D_axwdh")

@@ -1,18 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1rdjm1tw1f65"]
+[gd_scene load_steps=7 format=3 uid="uid://b1rdjm1tw1f65"]
 
 [ext_resource type="ArrayMesh" uid="uid://cekf1pxs311du" path="res://Art Assets/PC Computer - Overcooked - Onion/Onion/Onion.obj" id="1_7pwy8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7pwy8"]
 size = Vector3(1, 0.945557, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_yb1xg"]
+size = Vector3(1, 0.949753, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gg0xy"]
+albedo_color = Color(0.54376, 0.247482, 2.88785e-07, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vfx55"]
+material = SubResource("StandardMaterial3D_gg0xy")
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.7
+radial_segments = 67
+
+[sub_resource type="Skin" id="Skin_nvjwh"]
+
 [node name="Onion" type="RigidBody3D" groups=["Ingredient"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.998068, 0, 0, 0, 0.998068, 0, 0, 0, 0.998068, 0, 0.468307, 0)
+transform = Transform3D(0.998068, 0, 0, 0, 0.998068, 0, 0, 0, 0.998068, 0, 0.443372, 0)
 shape = SubResource("BoxShape3D_7pwy8")
 
 [node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.436504, 0)
+shape = SubResource("BoxShape3D_yb1xg")
 
 [node name="Onion" type="MeshInstance3D" parent="Area3D"]
 mesh = ExtResource("1_7pwy8")
 skeleton = NodePath("../../..")
+
+[node name="Onion_Chopped" type="MeshInstance3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.425173, 0)
+visible = false
+mesh = SubResource("CylinderMesh_vfx55")
+skin = SubResource("Skin_nvjwh")
