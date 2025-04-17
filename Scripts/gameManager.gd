@@ -11,7 +11,7 @@ enum GameState {
 var playerDataList = []
 var playerObjectList = []
 var gameScene = "res://Game Scenes/placeholderLevel.tscn"
-var playerScene = preload("res://Game Scenes/Player.tscn")
+var playerScene = preload("res://Prefab Objects/Player/Player.tscn")
 var localGameState : GameState
 
 var temporaryInputNames = []

@@ -5,12 +5,7 @@ var inventory = null;
 var holding = false;
 
 func _input(event: InputEvent) -> void:
-	var inputDeviceID = StaticFunctions.adjustForKeyboardInput(event)
-	
-	if inputDeviceID != get_parent().localDeviceID or get_parent().localDeviceID == -1:
-		return
-
-	if (Input.is_action_just_pressed("Interact" + str(get_parent().localDeviceID))):
+	if (Input.is_action_just_pressed("Interact-2")):
 		interactAction()
 
 func interactAction() -> void:

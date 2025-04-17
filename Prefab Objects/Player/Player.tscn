@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c826g7h8boo2y"]
 
-[ext_resource type="Script" uid="uid://x43ytercktro" path="res://Game Scenes/playerMovement.gd" id="1_0fxis"]
-[ext_resource type="Script" uid="uid://blyaky0rts7c5" path="res://Scripts/interactionHandler.gd" id="2_dceni"]
+[ext_resource type="Script" uid="uid://x43ytercktro" path="res://Scripts/playerMovement.gd" id="1_dmqyk"]
+[ext_resource type="Script" uid="uid://blyaky0rts7c5" path="res://Scripts/interactionHandler.gd" id="2_t2rhr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_he7y4"]
 
@@ -15,7 +15,7 @@ material = SubResource("StandardMaterial3D_6e6kn")
 [sub_resource type="SphereMesh" id="SphereMesh_dceni"]
 
 [node name="Player" type="CharacterBody3D"]
-script = ExtResource("1_0fxis")
+script = ExtResource("1_dmqyk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_he7y4")
@@ -32,7 +32,7 @@ mesh = SubResource("SphereMesh_dceni")
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.774899, 0.437188)
 debug_shape_thickness = 5
-script = ExtResource("2_dceni")
+script = ExtResource("2_t2rhr")
 
 [node name="hand" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.41862)

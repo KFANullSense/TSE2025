@@ -1,8 +1,8 @@
 [gd_scene load_steps=16 format=3 uid="uid://dkar3yg0sbhhv"]
 
+[ext_resource type="PackedScene" uid="uid://brh3nfclfw7l" path="res://Prefab Objects/Player/DebugPlayer.tscn" id="1_w44a7"]
 [ext_resource type="PackedScene" uid="uid://bwbtksyfdsxun" path="res://Prefab Objects/CounterTops/bin.tscn" id="2_a6mxr"]
 [ext_resource type="PackedScene" uid="uid://dko6f4vllq8kr" path="res://Prefab Objects/CounterTops/counter.tscn" id="3_i5ibn"]
-[ext_resource type="PackedScene" uid="uid://c826g7h8boo2y" path="res://Game Scenes/Player.tscn" id="4_441dw"]
 [ext_resource type="PackedScene" uid="uid://daai77ykgwp45" path="res://Prefab Objects/cheese.tscn" id="4_esyyw"]
 [ext_resource type="PackedScene" uid="uid://dkj835yojrth0" path="res://Prefab Objects/mushroom.tscn" id="5_w44a7"]
 [ext_resource type="PackedScene" uid="uid://6l5l4ym0stwd" path="res://Prefab Objects/Produce/cheese_bin.tscn" id="6_0kf8d"]
@@ -25,7 +25,7 @@ size = Vector3(2.02481, 1, 1.96594)
 transform = Transform3D(1, 0, 0, 0, 0.65991, 0.751345, 0, -0.751345, 0.65991, -0.220046, 4.60343, 5.717)
 current = true
 
-[node name="Player" parent="." groups=["Ingredient", "Player"] instance=ExtResource("4_441dw")]
+[node name="DebugPlayer" parent="." groups=["Ingredient", "Player"] instance=ExtResource("1_w44a7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.48845, 1.1418, 0.0543769)
 
 [node name="Floor" type="StaticBody3D" parent="."]
