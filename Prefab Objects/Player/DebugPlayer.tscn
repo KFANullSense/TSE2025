@@ -35,4 +35,4 @@ debug_shape_thickness = 5
 script = ExtResource("2_t8v5j")
 
 [node name="hand" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.41862)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0033505, 0.000107765, 1.0599)

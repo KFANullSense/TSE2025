@@ -42,7 +42,7 @@ shape = SubResource("BoxShape3D_53ipw")
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 21.8142, 0, -7.67)
 
 [node name="Counter" parent="." instance=ExtResource("3_i5ibn")]
-transform = Transform3D(110, 0, 0, 0, 110, 0, 0, 0, 110, 2.83123, 0, 2.3442)
+transform = Transform3D(110, 0, 0, 0, 110, 0, 0, 0, 110, -4.80052, 0, 1.7406)
 
 [node name="Cheese" parent="." instance=ExtResource("4_esyyw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2436, 0.398468, -3.94767)
@@ -73,3 +73,6 @@ transform = Transform3D(100, 0, 0, 0, 46.7237, 0, 0, 0, 100, -2.65954, 0, -3.890
 
 [node name="PotatoBin" parent="." instance=ExtResource("10_l4am2")]
 transform = Transform3D(100, 0, 0, 0, 46.7237, 0, 0, 0, 100, 2.22299, 0, -3.89002)
+
+[node name="Counter2" parent="." instance=ExtResource("3_i5ibn")]
+transform = Transform3D(110, 0, 0, 0, 46.7568, 0, 0, 0, 110, -3.60539, 0.0318864, 1.61097)

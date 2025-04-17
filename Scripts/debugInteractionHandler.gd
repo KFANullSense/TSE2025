@@ -77,8 +77,9 @@ func store():
 	if is_colliding() and holding:
 		var hit = get_collider()
 		if (hit.is_in_group("Counter")):
-			var location = hit.position
-			inventory.position = location + Vector3(0,1,0)
+			var location = hit.global_position
+			inventory.position =  inventory.position + Vector3(0,5,0)
+			print(inventory.position)
 			inventory = null
 			holding = false
 			print("counter put down")
