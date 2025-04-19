@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://coqlbo3wkm3r"]
+[gd_scene load_steps=7 format=3 uid="uid://coqlbo3wkm3r"]
 
 [ext_resource type="PackedScene" uid="uid://dko6f4vllq8kr" path="res://Prefab Objects/CounterTops/counter.tscn" id="1_e0lpf"]
+[ext_resource type="Script" uid="uid://cdaxogjhmuo5h" path="res://Scripts/Interatables/chopping_Counter.gd" id="1_rl2r5"]
 [ext_resource type="PackedScene" uid="uid://61sco4pgv044" path="res://Art Assets/CuttingBoard.fbx" id="2_rl2r5"]
 [ext_resource type="PackedScene" uid="uid://dvomopr0i8nqo" path="res://Art Assets/Knife.fbx" id="3_3ewtu"]
 
@@ -11,6 +12,7 @@ size = Vector3(1.25415, 0.675537, 1.22589)
 size = Vector3(1, 0.5, 1)
 
 [node name="CuttingCounter" type="StaticBody3D"]
+script = ExtResource("1_rl2r5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0179443, 0.320502, 0.0450745)
