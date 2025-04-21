@@ -5,8 +5,11 @@ enum GameState {
 	PLAYERSELECT,
 	LOADING,
 	GAMERUNNING,
-	GAMEPAUSED
+	GAMEPAUSED,
+	GAMEEND
 }
+
+const GAME_LENGTH = 120
 
 var playerDataList = []
 var playerObjectList = []
@@ -17,6 +20,7 @@ var localGameState : GameState
 var temporaryInputNames = []
 
 var currentRecipeList = []
+var currentGameTimer: SceneTreeTimer = null
 
 func AddPlayerToList(playerToAdd):
 	if (playerToAdd is not playerData):
@@ -42,8 +46,6 @@ func StartGame():
 		return
 		
 	CreatePlayerInputMaps()
-		
-	UpdateGameState(GameState.GAMERUNNING)
 	get_tree().change_scene_to_file(gameScene)
 	
 	UpdateGameState(GameState.LOADING)
@@ -64,7 +66,7 @@ func SpawnPlayers(spawnPoints, parentNode):
 		
 		playerObjectList.append(localPlayer)
 		
-	UpdateGameState(GameState.GAMERUNNING)
+	StartGameTimer()
 
 func UpdateGameState(newState: int):
 	if (newState >= 0 and newState < GameState.size()):
@@ -91,3 +93,19 @@ func CreatePlayerInputMaps():
 func ClearTemporaryInputs():
 	for tempInput in temporaryInputNames:
 		InputMap.action_erase_events(tempInput)
+		
+func StartGameTimer():
+	if (localGameState != GameState.LOADING):
+		push_warning("GameManager: Trying to start game timer when game is not ready")
+		return
+	
+	UpdateGameState(GameState.GAMERUNNING)
+	
+	currentGameTimer = get_tree().create_timer(GAME_LENGTH)
+	await currentGameTimer.timeout
+	currentGameTimer = null
+	
+	EndGame()
+	
+func EndGame():
+	UpdateGameState(GameState.GAMEEND)
