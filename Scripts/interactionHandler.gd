@@ -1,5 +1,7 @@
 extends RayCast3D
 
+class_name InteractionHandler
+
 @onready var hand =$"../hand"
 var inventory = null;
 var holding = false;
@@ -17,7 +19,7 @@ func interactAction() -> void:
 	if (is_colliding()):
 		var hit = get_collider()
 		
-		if hit is Ingredient:
+		if hit is Ingredient or hit is IngredientStack:
 			if (not holding):
 				pickUp(hit)
 		elif hit is CounterTop:
@@ -28,12 +30,12 @@ func interactAction() -> void:
 		elif hit.is_in_group("Bin"):
 			if (holding):
 				delete()
-		elif hit.is_in_group("Produce"):
+		elif hit is ProduceBin:
 			if (not holding):
 				produce(hit)
-		else:
-			if (holding):
-				putDown()
+	else:
+		if (holding):
+			putDown()
 			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
@@ -52,13 +54,14 @@ func pickUp(objectToPickUp):
 	
 func putDown():
 	if holding and inventory != null:
-		inventory = null
-		holding = false
-		print("put down")
 		if inventory is RigidBody3D:
 				inventory.get_node("CollisionShape3D").disabled = false
 				inventory.linear_velocity = Vector3.ZERO
 				inventory.angular_velocity = Vector3.ZERO
+				
+		inventory = null
+		holding = false
+		print("put down")
 				
 func store(localCounter: CounterTop):
 	var result = localCounter.placeItem(inventory)
@@ -77,46 +80,11 @@ func collectFromCounter(localCounter: CounterTop):
 	var result = localCounter.pickupItem()
 	
 	if result != null:
-		result.reparent(self, true)
+		result.reparent(get_tree().root, true)
 		pickUp(result)
 			
-var loader = null
 func produce(localProduceBin):
-	if (localProduceBin.is_in_group("CheeseBin")):
-		loader = preload("res://Prefab Objects/cheese.tscn")
-		var instance = loader.instantiate()
-		instance.position = instance.position + Vector3(0,0.01,0)
-		var parentPath = get_node("/root/Test/CheeseBin")
-		parentPath.add_child(instance)
-		print("produced cheese")
-	elif (localProduceBin.is_in_group("TomatoBin")):
-		loader = preload("res://Prefab Objects/tomato.tscn")
-		var instance = loader.instantiate()
-		instance.position = instance.position + Vector3(0,0.01,0)
-		var parentPath = get_node("/root/Test/TomatoBin")
-		parentPath.add_child(instance)
-		print("produced tomato")
-	elif (localProduceBin.is_in_group("MushroomBin")):
-		loader = preload("res://Prefab Objects/mushroom.tscn")
-		var instance = loader.instantiate()
-		instance.position = instance.position + Vector3(0,0.01,0)
-		var parentPath = get_node("/root/Test/MushroomBin")
-		parentPath.add_child(instance)
-		print("produced mushroom")
-	elif (localProduceBin.is_in_group("OnionBin")):
-		loader = preload("res://Prefab Objects/onion.tscn")
-		var instance = loader.instantiate()
-		instance.position = instance.position + Vector3(0,0.01,0)
-		var parentPath = get_node("/root/Test/OnionBin")
-		parentPath.add_child(instance)
-		print("produced onion")
-	elif (localProduceBin.is_in_group("PotatoBin")):
-		loader = preload("res://Prefab Objects/potato.tscn")
-		var instance = loader.instantiate()
-		instance.position = instance.position + Vector3(0,0.01,0)
-		var parentPath = get_node("/root/Test/PotatoBin")
-		parentPath.add_child(instance)
-		print("produced potato")
+	pickUp(localProduceBin.spawnObject())
 				
 func delete():
 	if (inventory is IngredientStack):

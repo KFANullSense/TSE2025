@@ -1,11 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://d383qsi1qj26f"]
+[gd_scene load_steps=7 format=3 uid="uid://d383qsi1qj26f"]
 
+[ext_resource type="Script" uid="uid://cayo73x40iuog" path="res://Scripts/Ingredient Scripts/ingredient.gd" id="1_h0536"]
 [ext_resource type="ArrayMesh" uid="uid://xy7pinqlmbma" path="res://Art Assets/PC Computer - Overcooked - Tomato/Tomato/Tomato.obj" id="1_u0uo6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u0uo6"]
 size = Vector3(1, 0.878906, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0536"]
+albedo_color = Color(0.54376, 0.247482, 2.88785e-07, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6qiq6"]
+material = SubResource("StandardMaterial3D_h0536")
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.7
+radial_segments = 67
+
+[sub_resource type="Skin" id="Skin_ysswg"]
+
 [node name="Tomato" type="RigidBody3D" groups=["Ingredient"]]
+script = ExtResource("1_h0536")
+ingredient_type = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.456983, 0)
@@ -13,6 +28,14 @@ shape = SubResource("BoxShape3D_u0uo6")
 
 [node name="Area3D" type="Area3D" parent="."]
 
-[node name="Tomato" type="MeshInstance3D" parent="Area3D"]
+[node name="RawMesh" type="MeshInstance3D" parent="Area3D"]
+unique_name_in_owner = true
 mesh = ExtResource("1_u0uo6")
 skeleton = NodePath("../../..")
+
+[node name="ChoppedMesh" type="MeshInstance3D" parent="Area3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.425173, 0)
+visible = false
+mesh = SubResource("CylinderMesh_6qiq6")
+skin = SubResource("Skin_ysswg")

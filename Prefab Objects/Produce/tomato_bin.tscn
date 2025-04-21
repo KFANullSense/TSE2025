@@ -1,25 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqbedtbplh0df"]
+[gd_scene load_steps=6 format=3 uid="uid://bdhg8vb0ht0xs"]
 
 [ext_resource type="PackedScene" uid="uid://bjj66ilde6751" path="res://Art Assets/Basic_Cabinet_No_Handle.fbx" id="1_crfrv"]
+[ext_resource type="Script" uid="uid://hkt2eopai3b8" path="res://Scripts/produceBin.gd" id="1_tb1ei"]
 [ext_resource type="ArrayMesh" uid="uid://xy7pinqlmbma" path="res://Art Assets/PC Computer - Overcooked - Tomato/Tomato/Tomato.obj" id="2_4rxcf"]
+[ext_resource type="PackedScene" uid="uid://d383qsi1qj26f" path="res://Prefab Objects/tomato.tscn" id="2_tb1ei"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0kf8d"]
-size = Vector3(1.13351, 0.515503, 0.744019)
+size = Vector3(1, 0.35, 0.55)
 
-[node name="TomatoBin" type="StaticBody3D" groups=["Produce", "TomatoBin"]]
-transform = Transform3D(100, 0, 0, 0, 46.7237, 0, 0, 0, 100, 0, 0, 0)
+[node name="TomatoBin" type="StaticBody3D"]
+script = ExtResource("1_tb1ei")
+ObjectToSpawn = ExtResource("2_tb1ei")
 
 [node name="Basic_Cabinet_No_Handle" parent="." instance=ExtResource("1_crfrv")]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.01, 0, 0, 0, 0.018, 0, 0, 0, 0.018, 0.000484643, 0.00436047, 0.000615418)
+transform = Transform3D(1, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0.3, 0)
 shape = SubResource("BoxShape3D_0kf8d")
 
-[node name="Tomato" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.01, 0, 0, 0, 0.0214024, 0, 0, 0, 0.01, -0.000233718, -0.00528637, -0.000268213)
+[node name="RawMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.000864148, 0.202547, -0.00256109)
 mesh = ExtResource("2_4rxcf")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")

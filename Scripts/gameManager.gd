@@ -16,6 +16,8 @@ var localGameState : GameState
 
 var temporaryInputNames = []
 
+var currentRecipeList = []
+
 func AddPlayerToList(playerToAdd):
 	if (playerToAdd is not playerData):
 		push_warning("GameManager: Attempting to add a player that is incorrectly typed.")

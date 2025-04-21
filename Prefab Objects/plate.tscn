@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy002wp1rfqi5"]
+
+[ext_resource type="Script" uid="uid://bynhl0y7u25o8" path="res://Scripts/Ingredient Scripts/ingredientStack.gd" id="1_siadw"]
+[ext_resource type="ArrayMesh" uid="uid://s0r2edxspok0" path="res://Art Assets/PlateModelFixed.obj" id="2_siadw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7pwy8"]
+size = Vector3(1, 0.945557, 1)
+
+[node name="Plate" type="RigidBody3D" groups=["Ingredient"]]
+script = ExtResource("1_siadw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.998068, 0, 0, 0, 0.998068, 0, 0, 0, 0.998068, 0, 0.443372, 0)
+shape = SubResource("BoxShape3D_7pwy8")
+
+[node name="PlateModelFixed" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
+mesh = ExtResource("2_siadw")

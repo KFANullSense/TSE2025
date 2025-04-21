@@ -1,18 +1,40 @@
-[gd_scene load_steps=3 format=3 uid="uid://867dgpxvpwou"]
+[gd_scene load_steps=7 format=3 uid="uid://867dgpxvpwou"]
 
+[ext_resource type="Script" uid="uid://cayo73x40iuog" path="res://Scripts/Ingredient Scripts/ingredient.gd" id="1_4jd0k"]
 [ext_resource type="ArrayMesh" uid="uid://bbl0xxeqqk3cd" path="res://Art Assets/PC Computer - Overcooked - Potato/Potato/Chips_Raw.obj" id="1_t3hck"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t3hck"]
 size = Vector3(1, 0.854492, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yb1xg"]
+albedo_color = Color(0.54376, 0.247482, 2.88785e-07, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4jd0k"]
+material = SubResource("StandardMaterial3D_yb1xg")
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.7
+radial_segments = 67
+
+[sub_resource type="Skin" id="Skin_ivdjw"]
+
 [node name="Potato" type="RigidBody3D" groups=["Ingredient"]]
+script = ExtResource("1_4jd0k")
+ingredient_type = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.396109, 0)
 shape = SubResource("BoxShape3D_t3hck")
 
-[node name="Area3D" type="Area3D" parent="."]
-
-[node name="ChipsRaw" type="MeshInstance3D" parent="Area3D"]
+[node name="RawMesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
 mesh = ExtResource("1_t3hck")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../..")
+
+[node name="ChoppedMesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.425173, 0)
+visible = false
+mesh = SubResource("CylinderMesh_4jd0k")
+skin = SubResource("Skin_ivdjw")
+skeleton = NodePath("../RawMesh")

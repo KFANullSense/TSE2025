@@ -1,7 +1,4 @@
-extends CharacterBody3D
-
-const SPEED = 5.0
-const ROTATION_SPEED = 10.0
+extends PlayerMovement
 
 func handleMovement(delta: float):
 		# Add the gravity.
@@ -26,7 +23,3 @@ func handleMovement(delta: float):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
-
-	
-func _physics_process(delta: float) -> void:
-	handleMovement(delta)

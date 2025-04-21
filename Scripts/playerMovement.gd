@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+class_name PlayerMovement
+
 const SPEED = 5.0
 const ROTATION_SPEED = 10.0
 

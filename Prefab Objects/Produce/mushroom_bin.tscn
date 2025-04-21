@@ -1,25 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1m0a7huoy2xm"]
+[gd_scene load_steps=6 format=3 uid="uid://duvs3w788prax"]
 
+[ext_resource type="Script" uid="uid://hkt2eopai3b8" path="res://Scripts/produceBin.gd" id="1_fr5ac"]
 [ext_resource type="PackedScene" uid="uid://bjj66ilde6751" path="res://Art Assets/Basic_Cabinet_No_Handle.fbx" id="1_tc6c4"]
+[ext_resource type="PackedScene" uid="uid://dkj835yojrth0" path="res://Prefab Objects/mushroom.tscn" id="2_fr5ac"]
 [ext_resource type="ArrayMesh" uid="uid://dl53qx1pqkjh5" path="res://Art Assets/PC Computer - Overcooked - Mushroom/Mushroom.obj" id="2_hg7cf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0kf8d"]
-size = Vector3(1.13351, 0.515503, 0.744019)
+size = Vector3(1, 0.35, 0.55)
 
-[node name="MushroomBin" type="StaticBody3D" groups=["MushroomBin", "Produce"]]
-transform = Transform3D(100, 0, 0, 0, 46.7237, 0, 0, 0, 100, 0, 0, 0)
+[node name="MushroomBin" type="StaticBody3D"]
+script = ExtResource("1_fr5ac")
+ObjectToSpawn = ExtResource("2_fr5ac")
 
 [node name="Basic_Cabinet_No_Handle" parent="." instance=ExtResource("1_tc6c4")]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.01, 0, 0, 0, 0.018, 0, 0, 0, 0.018, 0.000484643, 0.00436047, 0.000615418)
+transform = Transform3D(1, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0.3, 0)
 shape = SubResource("BoxShape3D_0kf8d")
 
-[node name="Mushroom" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.002, 0, 0, 0, 0.004, 0, 0, 0, 0.002, -0.000487299, 0.00371242, 1.15484e-05)
+[node name="RawMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.15, 0, 0, 0, 0.111, 0, 0, 0, 0.15, 0, 0.465153, 0)
 mesh = ExtResource("2_hg7cf")
-skeleton = NodePath("../..")
