@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bktxv0k6fxd45"]
 
 [ext_resource type="PackedScene" uid="uid://c1u5xpq3ransc" path="res://Art Assets/CookPot.fbx" id="1_5pn2d"]
-[ext_resource type="Script" uid="uid://chtwmuxnq4wn0" path="res://Scripts/Interatables/cooking_Pot.gd" id="1_d0s45"]
+[ext_resource type="Script" uid="uid://chtwmuxnq4wn0" path="res://Scripts/Interactables/cooking_Pot.gd" id="1_d0s45"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_d0s45"]
 top_radius = 0.25

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://coqlbo3wkm3r"]
 
 [ext_resource type="PackedScene" uid="uid://dko6f4vllq8kr" path="res://Prefab Objects/CounterTops/counter.tscn" id="1_e0lpf"]
-[ext_resource type="Script" uid="uid://cdaxogjhmuo5h" path="res://Scripts/Interatables/chopping_Counter.gd" id="1_rl2r5"]
+[ext_resource type="Script" uid="uid://cdaxogjhmuo5h" path="res://Scripts/Interactables/chopping_Counter.gd" id="1_rl2r5"]
 [ext_resource type="PackedScene" uid="uid://61sco4pgv044" path="res://Art Assets/CuttingBoard.fbx" id="2_rl2r5"]
 [ext_resource type="PackedScene" uid="uid://dvomopr0i8nqo" path="res://Art Assets/Knife.fbx" id="3_3ewtu"]
 

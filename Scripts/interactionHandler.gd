@@ -133,6 +133,9 @@ func delete():
 	if is_colliding() and holding:
 		var hit = get_collider()
 		if (hit.is_in_group("Bin")):
-			inventory.free()
-			holding = false
-			print("deleted")
+			if (inventory is IngredientStack):
+				inventory.removeAllIngredients()
+			else:
+				inventory.free()
+				holding = false
+				print("deleted")
