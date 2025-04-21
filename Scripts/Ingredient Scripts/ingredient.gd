@@ -2,8 +2,16 @@ extends Node3D
 
 class_name Ingredient
 
+enum IngredientType {
+	ONION,
+	TOMATO,
+	MUSHROOM,
+	CHEESE,
+	POTATO,
+}
+
 var is_chopped: bool = false
-var ingredient_type: String = "onion" # Set this in each ingredient instance
+var ingredient_type: IngredientType = IngredientType.ONION
 
 @onready var raw_mesh = get_node("%RawMesh")
 @onready var chopped_mesh = get_node("%ChoppedMesh")

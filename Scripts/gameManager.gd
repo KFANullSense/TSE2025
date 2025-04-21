@@ -86,7 +86,6 @@ func CreatePlayerInputMaps():
 				localEvent.set_device(playerNum)
 				InputMap.action_add_event(localActionName, localEvent)
 
-
 func ClearTemporaryInputs():
 	for tempInput in temporaryInputNames:
 		InputMap.action_erase_events(tempInput)

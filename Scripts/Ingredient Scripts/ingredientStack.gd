@@ -9,9 +9,11 @@ func addIngredient(ingredientToAdd):
 		currentIngredients.append(ingredientToAdd)
 		ingredientToAdd.get_parent().remove_child(ingredientToAdd)
 		add_child(ingredientToAdd)
+		
 	elif (ingredientToAdd is CookedFood):
 		if (ingredientToAdd.localFoodType == CookedFood.FoodType.SOUP and currentIngredients.size() == 0):
 			currentIngredients.append(ingredientToAdd)
+			
 	else:
 		push_warning("Trying to add an invalid ingredient to a stack.")
 

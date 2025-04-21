@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dko6f4vllq8kr"]
+[gd_scene load_steps=5 format=3 uid="uid://dko6f4vllq8kr"]
 
 [ext_resource type="PackedScene" uid="uid://b02sy4lkkjawt" path="res://Art Assets/Basic_Cabinet.fbx" id="1_8bier"]
+[ext_resource type="Script" uid="uid://hxoe264vcdpw" path="res://Scripts/Interactables/counterTop.gd" id="1_lr8y0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_53ipw"]
 
@@ -9,6 +10,7 @@ size = Vector3(0.513069, 0.327881, 1.43211)
 
 [node name="Counter" type="StaticBody3D" groups=["Counter"]]
 transform = Transform3D(110, 0, 0, 0, 46.7568, 0, 0, 0, 110, 0, -0.665211, 0)
+script = ExtResource("1_lr8y0")
 
 [node name="Basic_Cabinet" parent="." instance=ExtResource("1_8bier")]
 
