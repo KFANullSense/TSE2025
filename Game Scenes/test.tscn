@@ -1,19 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://dkar3yg0sbhhv"]
+[gd_scene load_steps=13 format=3 uid="uid://dkar3yg0sbhhv"]
 
 [ext_resource type="PackedScene" uid="uid://brh3nfclfw7l" path="res://Prefab Objects/Player/DebugPlayer.tscn" id="1_w44a7"]
 [ext_resource type="PackedScene" uid="uid://bwbtksyfdsxun" path="res://Prefab Objects/CounterTops/bin.tscn" id="2_a6mxr"]
-[ext_resource type="PackedScene" uid="uid://cy002wp1rfqi5" path="res://Prefab Objects/plate.tscn" id="2_l4am2"]
 [ext_resource type="PackedScene" uid="uid://dko6f4vllq8kr" path="res://Prefab Objects/CounterTops/counter.tscn" id="3_i5ibn"]
-[ext_resource type="PackedScene" uid="uid://daai77ykgwp45" path="res://Prefab Objects/cheese.tscn" id="4_esyyw"]
-[ext_resource type="PackedScene" uid="uid://dkj835yojrth0" path="res://Prefab Objects/mushroom.tscn" id="5_w44a7"]
 [ext_resource type="PackedScene" uid="uid://nasafmkfgu6o" path="res://Prefab Objects/Produce/cheese_bin.tscn" id="6_0kf8d"]
-[ext_resource type="PackedScene" uid="uid://d383qsi1qj26f" path="res://Prefab Objects/tomato.tscn" id="6_l4am2"]
 [ext_resource type="PackedScene" uid="uid://bdhg8vb0ht0xs" path="res://Prefab Objects/Produce/tomato_bin.tscn" id="7_ng63d"]
-[ext_resource type="PackedScene" uid="uid://b1rdjm1tw1f65" path="res://Prefab Objects/onion.tscn" id="7_qixud"]
 [ext_resource type="PackedScene" uid="uid://duvs3w788prax" path="res://Prefab Objects/Produce/mushroom_bin.tscn" id="8_1krkb"]
 [ext_resource type="PackedScene" uid="uid://b1jagbu23s8wx" path="res://Prefab Objects/Produce/onion_bin.tscn" id="9_w44a7"]
+[ext_resource type="PackedScene" uid="uid://dkjudv3iwouwi" path="res://Prefab Objects/CounterTops/plateHolder.tscn" id="10_0kf8d"]
 [ext_resource type="PackedScene" uid="uid://cteawyqdnsqor" path="res://Prefab Objects/Produce/potato_bin.tscn" id="10_l4am2"]
-[ext_resource type="PackedScene" uid="uid://867dgpxvpwou" path="res://Prefab Objects/potato.tscn" id="13_w44a7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4am2"]
 albedo_color = Color(0.393086, 0.393086, 0.393085, 1)
@@ -43,29 +38,11 @@ mesh = SubResource("PlaneMesh_441dw")
 transform = Transform3D(1, 0, 0, 0, -0.00289583, 0, 0, 0, 1.01386, -0.000900269, -0.0275666, 0.00189209)
 shape = SubResource("BoxShape3D_53ipw")
 
-[node name="Plate" parent="." instance=ExtResource("2_l4am2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
-
 [node name="Bin" parent="." instance=ExtResource("2_a6mxr")]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 21.8142, 0, -7.67)
 
 [node name="Counter" parent="." instance=ExtResource("3_i5ibn")]
 transform = Transform3D(110, 0, 0, 0, 110, 0, 0, 0, 110, -4.80052, 0, 1.7406)
-
-[node name="Cheese" parent="." instance=ExtResource("4_esyyw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2436, 0.398468, -3.94767)
-
-[node name="Mushroom" parent="." instance=ExtResource("5_w44a7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.30705, 0.577974, 0)
-
-[node name="Tomato" parent="." instance=ExtResource("6_l4am2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.35052, 0.16444, -1.47096)
-
-[node name="Onion" parent="." instance=ExtResource("7_qixud")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
-
-[node name="Potato" parent="." instance=ExtResource("13_w44a7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.937435, 0.332908, 0)
 
 [node name="PotatoBin" parent="." instance=ExtResource("10_l4am2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
@@ -88,3 +65,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -4)
 
 [node name="CheeseBin" parent="." instance=ExtResource("6_0kf8d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -4)
+
+[node name="PlateHolder" parent="." instance=ExtResource("10_0kf8d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.59728, -0.0261187, -4.05066)

@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkjudv3iwouwi"]
+
+[ext_resource type="PackedScene" uid="uid://bvy6l6dpsf1uw" path="res://Art Assets/Basic_Cabinet_PlateWarmer.fbx" id="1_0qd77"]
+[ext_resource type="Script" uid="uid://hkt2eopai3b8" path="res://Scripts/produceBin.gd" id="1_m1qeb"]
+[ext_resource type="ArrayMesh" uid="uid://s0r2edxspok0" path="res://Art Assets/PlateModelFixed.obj" id="2_uqwyq"]
+[ext_resource type="PackedScene" uid="uid://cy002wp1rfqi5" path="res://Prefab Objects/plate.tscn" id="2_y88f4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0qd77"]
+
+[node name="PlateHolder" type="StaticBody3D"]
+script = ExtResource("1_m1qeb")
+ObjectToSpawn = ExtResource("2_y88f4")
+
+[node name="Basic_Cabinet_PlateWarmer" parent="." instance=ExtResource("1_0qd77")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+
+[node name="PlateModelFixed" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0.533152, 0)
+mesh = ExtResource("2_uqwyq")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="PlateModelFixed2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0.635098, 0)
+mesh = ExtResource("2_uqwyq")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="PlateModelFixed3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0.727737, 0)
+mesh = ExtResource("2_uqwyq")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="PlateModelFixed4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0.81099, 0)
+mesh = ExtResource("2_uqwyq")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="PlateModelFixed5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0.90107, 0)
+mesh = ExtResource("2_uqwyq")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_0qd77")
