@@ -76,3 +76,7 @@ transform = Transform3D(100, 0, 0, 0, 46.7237, 0, 0, 0, 100, 2.22299, 0, -3.8900
 
 [node name="Counter2" parent="." instance=ExtResource("3_i5ibn")]
 transform = Transform3D(110, 0, 0, 0, 46.7568, 0, 0, 0, 110, -3.60539, 0.0318864, 1.61097)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0.321396, -0.0990697, 0.941748, -0.383025, 0.895925, 0.224966, 0, 3.8, 0)
+shadow_enabled = true

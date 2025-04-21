@@ -1,10 +1,12 @@
 extends Node3D
 
+class_name Ingredient
+
 var is_chopped: bool = false
 var ingredient_type: String = "onion" # Set this in each ingredient instance
 
-@onready var raw_mesh = $RawMesh
-@onready var chopped_mesh = $ChoppedMesh
+@onready var raw_mesh = get_node("%RawMesh")
+@onready var chopped_mesh = get_node("%ChoppedMesh")
 
 func _ready():
 	# Show correct mesh on load
