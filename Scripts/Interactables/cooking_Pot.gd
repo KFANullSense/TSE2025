@@ -1,44 +1,57 @@
 extends Node3D
 
-const MAX_ITEMS = 3
+const MAX_ITEMS: int = 3
+const TIME_TO_COOK: float = 15.0
 
-var ingredient_type: String = ""
-var ingredient_count: int = 0
-var fill_meshes: Array[MeshInstance3D] = []
+var localIngredients: Array[Ingredient]
+var fill_meshes: Array[MeshInstance3D]
+var cookProgress: float = 0.0
 
-@onready var pot_mesh = $PotMesh
-@onready var fill1 = $Fill1
-@onready var fill2 = $Fill2
-@onready var fill3 = $Fill3
+var finishedSoup: CookedFood
+var isCooked = false
 
-func _ready():
-	fill_meshes = [fill1, fill2, fill3]
-	for mesh in fill_meshes:
-		mesh.visible = false
-
-func add_ingredient(ingredient: Node) -> bool:
-	# Must be chopped and have a known ingredient type
-	if not ingredient.has_method("is_chopped") or not ingredient.is_chopped:
-		return false
-	if not ingredient.has_variable("ingredient_type"):
+func add_ingredient(ingredientToAdd) -> bool:
+	if localIngredients.size() >= MAX_ITEMS:
 		return false
 	
-	var type = ingredient.ingredient_type
+	if (ingredientToAdd is Ingredient):
+		if not ingredientToAdd.is_chopped:
+			return false
+			
+		localIngredients.append(ingredientToAdd)
 	
-	# First item sets the required type
-	if ingredient_count == 0:
-		ingredient_type = type
-	elif type != ingredient_type:
-		return false # Reject different type
-
-	if ingredient_count >= MAX_ITEMS:
-		return false
+	if (ingredientToAdd is IngredientStack):
+		if localIngredients.size() + ingredientToAdd.currentIngredients.size() >= MAX_ITEMS:
+			return false
+		
+		if (ingredientToAdd.localStackType != IngredientStack.StackType.INGREDIENTS):
+			return false
+			
+		for localIngredient in ingredientToAdd.currentIngredients:
+			if not localIngredient.is_chopped:
+				return false
+				
+		for localIngredient in ingredientToAdd.currentIngredients:
+			localIngredients.append(localIngredient)
+			
+		ingredientToAdd.removeAllIngredients()
 	
-	# Add the item visually
-	fill_meshes[ingredient_count].visible = true
-	set_fill_color(fill_meshes[ingredient_count], type)
-	ingredient_count += 1
+	fill_meshes[localIngredients.size() - 1].visible = true
 	return true
+
+func _process(delta: float) -> void:
+	if (localIngredients.size() > 0 and isCooked == false):
+		cookProgress += delta
+		
+		if (cookProgress > TIME_TO_COOK):
+			isCooked = true
+			var finishedIngredientList: Array[Ingredient.IngredientType]
+			for localIngredient in localIngredients:
+				finishedIngredientList.append(localIngredient.ingredient_type)
+			finishedSoup = CookedFood.new(CookedFood.FoodType.SOUP, finishedIngredientList)
+			
+	else:
+		cookProgress = 0
 
 func set_fill_color(mesh: MeshInstance3D, type: String):
 	var color := Color.WHITE
@@ -58,3 +71,10 @@ func set_fill_color(mesh: MeshInstance3D, type: String):
 	var mat := StandardMaterial3D.new()
 	mat.albedo_color = color
 	mesh.set_surface_override_material(0, mat)
+
+func clearPot():
+	localIngredients = []
+	for fillMesh in fill_meshes:
+		fillMesh.visible = false
+		
+	isCooked = false

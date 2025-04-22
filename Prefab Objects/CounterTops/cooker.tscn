@@ -6,12 +6,12 @@
 size = Vector3(1, 0.7, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rna3w"]
-size = Vector3(1.13892, 0.648926, 1.18756)
+size = Vector3(1, 0.649, 1)
 
 [node name="Cooker" type="StaticBody3D"]
 
 [node name="Cooker" parent="." instance=ExtResource("1_ygdb8")]
-transform = Transform3D(110, 0, 0, 0, 110, 0, 0, 0, 110, 0, 0, 0)
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.243036, 0)
@@ -19,5 +19,5 @@ visible = false
 mesh = SubResource("BoxMesh_uk4j8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0123291, 0.297677, 0.0391541)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.298, 0)
 shape = SubResource("BoxShape3D_rna3w")
