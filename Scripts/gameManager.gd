@@ -22,6 +22,8 @@ var currentRecipeList: Array[Recipe] = []
 var currentGameTimer: SceneTreeTimer = null
 var currentLevelIndex = 0
 
+var timeBetweenRecipes: float = 10
+
 func AddPlayerToList(playerToAdd):
 	if (playerToAdd is not playerData):
 		push_warning("GameManager: Attempting to add a player that is incorrectly typed.")
@@ -101,11 +103,22 @@ func StartGameTimer():
 	
 	UpdateGameState(GameState.GAMERUNNING)
 	
+	StartRecipeLoop()
+	
 	currentGameTimer = get_tree().create_timer(loadedLevelValues.LEVEL_VALUES[currentLevelIndex])
 	await currentGameTimer.timeout
 	currentGameTimer = null
 	
 	EndGame()
+	
+func StartRecipeLoop():
+	if (localGameState != GameState.GAMERUNNING):
+		push_warning("GameManager: Trying to start recipe loop when game is not ready")
+	
+	while (localGameState == GameState.GAMERUNNING):
+		var recipeToAdd: Recipe = loadedLevelValues.LEVEL_VALUES[currentLevelIndex].recipeList.pick_random()
+		currentRecipeList.append(recipeToAdd)
+		await get_tree().create_timer(timeBetweenRecipes).timeout
 	
 func EndGame():
 	UpdateGameState(GameState.GAMEEND)
