@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhutm1v5xvtin"]
+[gd_scene load_steps=10 format=3 uid="uid://bhutm1v5xvtin"]
 
 [ext_resource type="Script" uid="uid://cvbghf1oaf0ra" path="res://Scripts/levelLoadScript.gd" id="1_54221"]
 [ext_resource type="PackedScene" uid="uid://bwbtksyfdsxun" path="res://Prefab Objects/CounterTops/bin.tscn" id="2_tprr5"]
 [ext_resource type="PackedScene" uid="uid://dko6f4vllq8kr" path="res://Prefab Objects/CounterTops/counter.tscn" id="3_sda3d"]
 [ext_resource type="PackedScene" uid="uid://b1jagbu23s8wx" path="res://Prefab Objects/Produce/onion_bin.tscn" id="5_45mkt"]
+[ext_resource type="PackedScene" uid="uid://coqlbo3wkm3r" path="res://Prefab Objects/CounterTops/Cutting_Counter.tscn" id="5_54221"]
 [ext_resource type="PackedScene" uid="uid://dkjudv3iwouwi" path="res://Prefab Objects/CounterTops/plateHolder.tscn" id="9_1ntic"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4am2"]
@@ -40,6 +41,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -4)
 
 [node name="PlateHolder" parent="." instance=ExtResource("9_1ntic")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 1)
+
+[node name="CuttingCounter" parent="." instance=ExtResource("5_54221")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0, 4)
+
+[node name="CuttingCounter2" parent="." instance=ExtResource("5_54221")]
+transform = Transform3D(-1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, -1, -3, 0, 4)
 
 [node name="CounterHolder" type="Node" parent="."]
 

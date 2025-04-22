@@ -4,7 +4,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dl53qx1pqkjh5" path="res://Art Assets/PC Computer - Overcooked - Mushroom/Mushroom.obj" id="1_hypgr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hypgr"]
-size = Vector3(1, 0.63501, 0.840088)
+size = Vector3(1, 0.8, 0.84)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_euh80"]
 albedo_color = Color(0.54376, 0.247482, 2.88785e-07, 1)
@@ -23,17 +23,17 @@ script = ExtResource("1_euh80")
 ingredient_type = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.00358, 0, 0, 0, 1.00358, 0, 0, 0, 1.00358, 0.0422763, 0.0216724, 0.00458872)
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.0422763, 0.0216724, 0.00458872)
 shape = SubResource("BoxShape3D_hypgr")
 
 [node name="RawMesh" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.2, 0, 0, 0, 0.147462, 0, 0, 0, 0.2, 0, 0, 0)
+transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 mesh = ExtResource("1_hypgr")
 
 [node name="ChoppedMesh" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.2, 0, 0, 0, 0.147462, 0, 0, 0, 0.2, 0, 0.0626969, 0)
+transform = Transform3D(0.8, 0, 0, 0, 0.587, 0, 0, 0, 0.8, 0.00284445, 0.0649901, -0.00058639)
 visible = false
 mesh = SubResource("CylinderMesh_1konn")
 skin = SubResource("Skin_e5tuo")

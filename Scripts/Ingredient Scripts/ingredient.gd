@@ -1,4 +1,4 @@
-extends Node3D
+extends RigidBody3D
 
 class_name Ingredient
 
@@ -23,10 +23,6 @@ func _ready():
 
 func is_choppable() -> bool:
 	return not is_chopped
-
-func on_chop(delta: float):
-	# Optional: Add sound, particles, etc.
-	pass
 
 func finish_chopping():
 	if not is_chopped:

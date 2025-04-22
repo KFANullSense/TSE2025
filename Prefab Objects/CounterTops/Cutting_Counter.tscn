@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://coqlbo3wkm3r"]
+[gd_scene load_steps=6 format=3 uid="uid://coqlbo3wkm3r"]
 
 [ext_resource type="PackedScene" uid="uid://dko6f4vllq8kr" path="res://Prefab Objects/CounterTops/counter.tscn" id="1_e0lpf"]
 [ext_resource type="Script" uid="uid://cdaxogjhmuo5h" path="res://Scripts/Interactables/chopping_Counter.gd" id="1_rl2r5"]
@@ -6,27 +6,20 @@
 [ext_resource type="PackedScene" uid="uid://dvomopr0i8nqo" path="res://Art Assets/Knife.fbx" id="3_3ewtu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ojr0l"]
-size = Vector3(1.25415, 0.675537, 1.22589)
-
-[sub_resource type="BoxMesh" id="BoxMesh_6um8v"]
-size = Vector3(1, 0.5, 1)
+size = Vector3(1, 0.676, 1)
 
 [node name="CuttingCounter" type="StaticBody3D"]
 script = ExtResource("1_rl2r5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0179443, 0.320502, 0.0450745)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.321, 0)
 shape = SubResource("BoxShape3D_ojr0l")
 
 [node name="Counter" parent="." instance=ExtResource("1_e0lpf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CuttingBoard" parent="." instance=ExtResource("2_rl2r5")]
-transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, -0.031107, 0.561563, -0.003914)
+transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, -0.031107, 0.510285, -0.003914)
 
 [node name="Knife" parent="." instance=ExtResource("3_3ewtu")]
-transform = Transform3D(81.2671, 0, 38.6737, 0, 90, 0, -38.6737, 0, 81.2671, 0.134782, 0.589942, -0.0151898)
-
-[node name="Cutting_Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.269143, 0)
-visible = false
-mesh = SubResource("BoxMesh_6um8v")
+transform = Transform3D(81.2671, 0, 38.6737, 0, 90, 0, -38.6737, 0, 81.2671, 0.134782, 0.536941, -0.0151898)

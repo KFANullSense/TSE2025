@@ -14,6 +14,9 @@ func _input(event: InputEvent) -> void:
 
 	if (Input.is_action_just_pressed("Interact" + str(get_parent().localDeviceID))):
 		interactAction()
+		
+	if (Input.is_action_just_pressed("use" + str(get_parent().localDeviceID))):
+		useAction()
 
 func interactAction() -> void:
 	if (is_colliding()):
@@ -36,6 +39,16 @@ func interactAction() -> void:
 	else:
 		if (holding):
 			putDown()
+			
+func useAction():
+	if (is_colliding()):
+		var hit = get_collider()
+		
+		if hit is ChoppingCounter:
+			var player: PlayerMovement = get_parent() as PlayerMovement
+			player.canMove = false
+			await hit.chopIngredient()
+			player.canMove = true
 			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
@@ -67,11 +80,6 @@ func store(localCounter: CounterTop):
 	var result = localCounter.placeItem(inventory)
 	
 	if (result == true):
-		inventory.linear_velocity = Vector3.ZERO
-		inventory.angular_velocity = Vector3.ZERO
-		
-		inventory.get_node("CollisionShape3D").disabled = false
-		
 		inventory = null
 		holding = false
 		print("counter put down")
