@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b1jagbu23s8wx" path="res://Prefab Objects/Produce/onion_bin.tscn" id="9_w44a7"]
 [ext_resource type="PackedScene" uid="uid://dkjudv3iwouwi" path="res://Prefab Objects/CounterTops/plateHolder.tscn" id="10_0kf8d"]
 [ext_resource type="PackedScene" uid="uid://cteawyqdnsqor" path="res://Prefab Objects/Produce/potato_bin.tscn" id="10_l4am2"]
-[ext_resource type="PackedScene" uid="uid://djbmxa3iyeyc8" path="res://Prefab Objects/ui_overlay.tscn" id="10_ng63d"]
+[ext_resource type="PackedScene" uid="uid://djbmxa3iyeyc8" path="res://Prefab Objects/UI/ui_overlay.tscn" id="10_ng63d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4am2"]
 albedo_color = Color(0.393086, 0.393086, 0.393085, 1)

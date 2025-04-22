@@ -11,8 +11,11 @@ enum GameState {
 
 var playerDataList = []
 var playerObjectList = []
+
 var gameScenes: Array[String] = ["res://Game Scenes/placeholderLevel.tscn"]
 var playerScene = preload("res://Prefab Objects/Player/Player.tscn")
+var recipeUIScene = preload("res://Prefab Objects/UI/recipeUI.tscn")
+
 var localGameState : GameState
 @onready var loadedLevelValues: LevelValues = LevelValues.new()
 
@@ -105,7 +108,7 @@ func StartGameTimer():
 	
 	StartRecipeLoop()
 	
-	currentGameTimer = get_tree().create_timer(loadedLevelValues.LEVEL_VALUES[currentLevelIndex])
+	currentGameTimer = get_tree().create_timer(loadedLevelValues.LEVEL_VALUES[currentLevelIndex].timeLength)
 	await currentGameTimer.timeout
 	currentGameTimer = null
 	
@@ -118,6 +121,11 @@ func StartRecipeLoop():
 	while (localGameState == GameState.GAMERUNNING):
 		var recipeToAdd: Recipe = loadedLevelValues.LEVEL_VALUES[currentLevelIndex].recipeList.pick_random()
 		currentRecipeList.append(recipeToAdd)
+		
+		var localUIObject = recipeUIScene.instantiate()
+		recipeToAdd.initializeUIObject(localUIObject)
+		get_tree().root.get_node("UIOverlay/RecipeGrid").add_child(localUIObject)
+		
 		await get_tree().create_timer(timeBetweenRecipes).timeout
 	
 func EndGame():
