@@ -4,12 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://dihys0vggxrr3" path="res://UI Images/Food Items/tomato.png" id="2_cda26"]
 
 [node name="RecipeUI" type="ColorRect"]
-custom_minimum_size = Vector2(300, 150)
+custom_minimum_size = Vector2(250, 125)
 color = Color(0.860813, 0.856723, 0.789289, 1)
 
 [node name="MainImage" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(150, 75)
+position = Vector2(125, 50)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_mwtr5")
 
@@ -21,24 +21,24 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -150.0
-offset_right = 150.0
+offset_left = -125.0
+offset_right = 125.0
 offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.637843, 0.637843, 0.637843, 1)
 
 [node name="Left" type="Sprite2D" parent="IngredientHolder"]
-position = Vector2(50, 37.5)
+position = Vector2(35, 37.5)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_cda26")
 
 [node name="Middle" type="Sprite2D" parent="IngredientHolder"]
-position = Vector2(150, 37.5)
+position = Vector2(125, 37.5)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_cda26")
 
 [node name="Right" type="Sprite2D" parent="IngredientHolder"]
-position = Vector2(250, 37.5)
+position = Vector2(215, 37.5)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_cda26")

@@ -18,21 +18,24 @@ material = SubResource("StandardMaterial3D_6e6kn")
 script = ExtResource("1_dmqyk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_he7y4")
 
 [node name="PlayerMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_he7y4")
 
 [node name="nose" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.163536)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="nose"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.0269464, 0.437386, 0.492154)
 mesh = SubResource("SphereMesh_dceni")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.774899, 0.437188)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.384487, 0.245139)
 debug_shape_thickness = 5
 script = ExtResource("2_t2rhr")
 
 [node name="hand" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.41862)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)

@@ -4,4 +4,4 @@ extends CanvasLayer
 
 func _process(delta: float) -> void:
 	if (GameManager.localGameState == GameManager.GameState.GAMERUNNING and GameManager.currentGameTimer != null):
-		timerLabel.text = str(GameManager.currentGameTimer.time_left)
+		timerLabel.text = str(roundi(GameManager.currentGameTimer.time_left))

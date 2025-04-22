@@ -4,14 +4,15 @@
 [ext_resource type="Script" uid="uid://hxoe264vcdpw" path="res://Scripts/Interactables/counterTop.gd" id="1_lr8y0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a6mxr"]
-size = Vector3(0.513069, 0.327881, 1.43211)
+size = Vector3(1, 0.5, 1)
 
 [node name="Counter" type="StaticBody3D"]
-transform = Transform3D(110, 0, 0, 0, 46.7568, 0, 0, 0, 110, 0, -0.665211, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.665211, 0)
 script = ExtResource("1_lr8y0")
 
 [node name="Basic_Cabinet" parent="." instance=ExtResource("1_8bier")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.019666, 0, 0, 0, 0.0160582, 0, 0, 0, 0.0088472, 6.57919e-05, 0.00239586, 0.00135004)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_a6mxr")

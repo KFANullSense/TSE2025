@@ -33,17 +33,17 @@ func initializeUIObject(uiObjectRef):
 	if (finalItemType == IngredientStack.StackType.SOUP):
 		recipeUIObject.get_node("%MainImage").texture = SpriteLoader.soupSprite
 		
-	var ingredientSprites = recipeUIObject.get_node().get_children()
+	var ingredientSprites = recipeUIObject.get_node("%IngredientHolder").get_children()
 	
 	for i in range(finalItemIngredients.size()):
 		var spriteToSet: Texture2D
 		
 		match finalItemIngredients[i]:
 			Ingredient.IngredientType.ONION:
-				SpriteLoader.onionSprite
+				spriteToSet = SpriteLoader.onionSprite
 			Ingredient.IngredientType.MUSHROOM:
-				SpriteLoader.mushroomSprite
+				spriteToSet = SpriteLoader.mushroomSprite
 			Ingredient.IngredientType.TOMATO:
-				SpriteLoader.tomatoSprite
+				spriteToSet = SpriteLoader.tomatoSprite
 	
 		ingredientSprites[i].texture = spriteToSet

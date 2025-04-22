@@ -1,26 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbhv4p8to5q8"]
+[gd_scene load_steps=5 format=3 uid="uid://dbhv4p8to5q8"]
 
 [ext_resource type="Script" uid="uid://blp8alulpnwg" path="res://Scripts/mainMenuScript.gd" id="1_i4xi0"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_abdqr"]
-font_size = 46
+[ext_resource type="Texture2D" uid="uid://84638lgw1n2i" path="res://UI Images/Main UI/TitleSplash.png" id="2_4gcx0"]
+[ext_resource type="Texture2D" uid="uid://jucd258d1oqk" path="res://UI Images/Main UI/StartGameText.png" id="3_7mlhi"]
+[ext_resource type="Texture2D" uid="uid://bipo21251yq7i" path="res://UI Images/Main UI/ExitGameText.png" id="4_1dhgd"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_i4xi0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -76.0
-offset_top = 25.0
-offset_right = 76.0
-offset_bottom = 48.0
-grow_horizontal = 2
-text = "Untitled Chef Game"
-label_settings = SubResource("LabelSettings_abdqr")
+[node name="Label" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(967, 185)
+texture = ExtResource("2_4gcx0")
 
 [node name="Button" type="Button" parent="CanvasLayer"]
 anchors_preset = 8
@@ -28,13 +20,33 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -30.0
-offset_right = 150.0
-offset_bottom = 30.0
+offset_left = -203.0
+offset_top = -68.0
+offset_right = 829.0
+offset_bottom = 326.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.4, 0.4)
 theme_override_font_sizes/font_size = 32
-text = "Start Game"
+icon = ExtResource("3_7mlhi")
+icon_alignment = 1
 
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[node name="Button2" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -203.0
+offset_top = 151.0
+offset_right = 829.0
+offset_bottom = 545.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+theme_override_font_sizes/font_size = 32
+icon = ExtResource("4_1dhgd")
+icon_alignment = 1
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_start_button_press"]
+[connection signal="pressed" from="CanvasLayer/Button2" to="." method="_quit_button_press"]
