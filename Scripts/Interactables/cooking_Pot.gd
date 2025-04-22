@@ -1,5 +1,7 @@
 extends Node3D
 
+class_name CookingPot
+
 const MAX_ITEMS: int = 3
 const TIME_TO_COOK: float = 15.0
 
@@ -9,6 +11,7 @@ var cookProgress: float = 0.0
 
 var finishedSoup: CookedFood
 var isCooked = false
+var isOnStove = true
 
 func add_ingredient(ingredientToAdd) -> bool:
 	if localIngredients.size() >= MAX_ITEMS:
@@ -40,7 +43,7 @@ func add_ingredient(ingredientToAdd) -> bool:
 	return true
 
 func _process(delta: float) -> void:
-	if (localIngredients.size() > 0 and isCooked == false):
+	if (localIngredients.size() > 0 and isCooked == false and isOnStove):
 		cookProgress += delta
 		
 		if (cookProgress > TIME_TO_COOK):
