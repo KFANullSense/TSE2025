@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ctlgxjgt31ghp"]
 
-[ext_resource type="Script" uid="uid://cvbghf1oaf0ra" path="res://Scripts/levelScript.gd" id="1_vnu6f"]
+[ext_resource type="Script" uid="uid://cvbghf1oaf0ra" path="res://Scripts/levelLoadScript.gd" id="1_vnu6f"]
 [ext_resource type="PackedScene" uid="uid://crm57nc2rmbxf" path="res://Game Scenes/placeholderObject.tscn" id="2_vnu6f"]
 [ext_resource type="PackedScene" uid="uid://b1rdjm1tw1f65" path="res://Prefab Objects/onion.tscn" id="3_aggt8"]
 [ext_resource type="PackedScene" uid="uid://b4o2vw782iyp4" path="res://Prefab Objects/CounterTops/cooker.tscn" id="3_q1uwx"]

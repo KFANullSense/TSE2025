@@ -6,6 +6,8 @@ var maxPlayerCount = 4
 ##Store the active players in an array for later use
 var players = [-1, -1, -1, -1]
 
+const PLAYER_COLOURS = [Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW]
+
 ##On start
 func _ready() -> void:
 	##Set the columns of the grid to the max player count
@@ -77,15 +79,9 @@ func getActivePlayerSize() -> int:
 	return currentPlayerSize
 	
 func assignPlayerColour(playerNum) -> Color:
-	match playerNum + 1:
-		1:
-			return Color.RED
-		2:
-			return Color.BLUE
-		3:
-			return Color.GREEN
-		4:
-			return Color.YELLOW
-			
-	push_warning("Invalid player number while trying to assign colour, assigning red.")
-	return Color.RED
+	if (playerNum >= PLAYER_COLOURS.size()):
+		push_warning("Invalid player number while trying to assign colour, assigning red.")
+		return Color.RED
+		
+	return PLAYER_COLOURS[playerNum]
+	

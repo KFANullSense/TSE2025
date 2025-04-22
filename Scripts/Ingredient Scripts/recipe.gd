@@ -2,13 +2,21 @@ extends Object
 
 class_name Recipe
 
-var ingredientsNeeded = []
+var finalItemType: IngredientStack.StackType
+var finalItemIngredients: Array[Ingredient.IngredientType]
+
+func _init(localFinalItemType: IngredientStack.StackType, localFinalItemIngredients: Array[Ingredient.IngredientType]) -> void:
+	finalItemType = localFinalItemType
+	finalItemIngredients = localFinalItemIngredients
 
 func checkIfRecipeMatch(inputFood: IngredientStack):
-	var ingredientsRemaining = ingredientsNeeded.duplicate(true)
+	if (inputFood.localStackType != finalItemType):
+		return false
 	
-	for inputIngredient: Ingredient in inputFood.currentIngredients:
-		for localIngredient in ingredientsNeeded:
+	var ingredientsRemaining = finalItemIngredients.duplicate(true)
+	
+	for inputIngredient in inputFood.currentIngredients:
+		for localIngredient in finalItemIngredients:
 			if (inputIngredient.ingredient_type == localIngredient):
 				ingredientsRemaining.erase(localIngredient)
 				

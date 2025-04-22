@@ -9,18 +9,18 @@ enum GameState {
 	GAMEEND
 }
 
-const GAME_LENGTH = 120
-
 var playerDataList = []
 var playerObjectList = []
-var gameScene = "res://Game Scenes/placeholderLevel.tscn"
+var gameScenes: Array[String] = ["res://Game Scenes/placeholderLevel.tscn"]
 var playerScene = preload("res://Prefab Objects/Player/Player.tscn")
 var localGameState : GameState
+@onready var loadedLevelValues: LevelValues = LevelValues.new()
 
 var temporaryInputNames = []
 
-var currentRecipeList = []
+var currentRecipeList: Array[Recipe] = []
 var currentGameTimer: SceneTreeTimer = null
+var currentLevelIndex = 0
 
 func AddPlayerToList(playerToAdd):
 	if (playerToAdd is not playerData):
@@ -38,15 +38,15 @@ func CheckIfAllPlayersReady():
 
 func AttemptStartGame():
 	if (CheckIfAllPlayersReady()):
-		StartGame()
+		StartGame(currentLevelIndex)
 
-func StartGame():
+func StartGame(sceneIndex: int):
 	if (localGameState != GameState.PLAYERSELECT):
 		push_warning("GameManager: Attempting to start game from an invalid game state.")
 		return
 		
 	CreatePlayerInputMaps()
-	get_tree().change_scene_to_file(gameScene)
+	get_tree().change_scene_to_file(gameScenes[sceneIndex])
 	
 	UpdateGameState(GameState.LOADING)
 
@@ -101,7 +101,7 @@ func StartGameTimer():
 	
 	UpdateGameState(GameState.GAMERUNNING)
 	
-	currentGameTimer = get_tree().create_timer(GAME_LENGTH)
+	currentGameTimer = get_tree().create_timer(loadedLevelValues.LEVEL_VALUES[currentLevelIndex])
 	await currentGameTimer.timeout
 	currentGameTimer = null
 	
