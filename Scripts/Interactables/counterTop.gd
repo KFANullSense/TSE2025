@@ -11,17 +11,18 @@ func placeItem(itemToPlace) -> bool:
 				var result = itemToPlace.addIngredient(inventory)
 				if (result == true):
 					inventory = null
-					
 				return false
+				
 		elif inventory is IngredientStack or inventory is CookingPot:
 			if (itemToPlace is Ingredient):
 				var result = inventory.addIngredient(itemToPlace)
 				return result
+				
 			elif (itemToPlace is IngredientStack or itemToPlace is CookingPot):
 				inventory.addIngredient(itemToPlace)
 				return false
-		else:
-			return false
+		
+		return false
 		
 	else:
 		inventory = itemToPlace
@@ -34,6 +35,7 @@ func placeItem(itemToPlace) -> bool:
 		itemToPlace.get_node("CollisionShape3D").disabled = false
 		
 		return true
+		
 func pickupItem():
 	if inventory == null:
 		return null

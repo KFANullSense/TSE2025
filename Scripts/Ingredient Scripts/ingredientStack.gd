@@ -10,7 +10,7 @@ enum StackType {
 var currentIngredients = []
 var localStackType: StackType
 
-func addIngredient(ingredientToAdd):
+func addIngredient(ingredientToAdd) -> bool:
 	if (ingredientToAdd is Ingredient):
 		if (currentIngredients.size() == 0 or localStackType == StackType.INGREDIENTS):
 			if (ingredientToAdd.is_chopped):
@@ -24,19 +24,33 @@ func addIngredient(ingredientToAdd):
 				currentIngredients.append(ingredientToAdd)
 				return true
 		
-	elif (ingredientToAdd is CookedFood):
-		if (ingredientToAdd.localFoodType == CookedFood.FoodType.SOUP and currentIngredients.size() == 0):
+	elif (ingredientToAdd is CookingPot):
+		if (currentIngredients.size() == 0 and ingredientToAdd.isCooked):
 			localStackType = StackType.SOUP
-			currentIngredients = ingredientToAdd.childIngredients.duplicate(true)
+			currentIngredients = ingredientToAdd.finishedSoup.childIngredients
+			get_node("%SoupMesh").visible = true
+			ingredientToAdd.clearPot()
 			return true
 	
 	elif (ingredientToAdd is IngredientStack):
-		if (currentIngredients.size() == 0 and ingredientToAdd.currentIngredients.size() > 0):
-			for otherIngredient in ingredientToAdd.currentIngredients:
-				addIngredient(otherIngredient)
-			
-			ingredientToAdd.currentIngredients = []
-			return true
+		if (localStackType == StackType.INGREDIENTS):
+			if (currentIngredients.size() == 0 and ingredientToAdd.currentIngredients.size() > 0):
+				for otherIngredient in ingredientToAdd.currentIngredients:
+					addIngredient(otherIngredient)
+				
+				ingredientToAdd.currentIngredients = []
+				return true
+		elif (localStackType == StackType.SOUP):
+			if (currentIngredients.size() == 0 and ingredientToAdd.currentIngredients.size() > 0):
+				for otherIngredient in ingredientToAdd.currentIngredients:
+					addIngredient(otherIngredient)
+				
+				ingredientToAdd.currentIngredients = []
+				
+				get_node("%SoupMesh").visible = false
+				ingredientToAdd.get_node("%SoupMesh").visible = true
+				
+				return true
 			
 		elif (currentIngredients.size() > 0 and ingredientToAdd.currentIngredients.size() == 0):
 			for localIngredient in currentIngredients:
@@ -45,11 +59,11 @@ func addIngredient(ingredientToAdd):
 			currentIngredients = []
 			return true
 	
-	else:
-		push_warning("Trying to add an invalid ingredient to a stack.")
-		return false
+	return false
 
 func removeAllIngredients():
+	get_node("%SoupMesh").visible = false
+	
 	for ing in currentIngredients:
 		ing.free()
 		currentIngredients = []

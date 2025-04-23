@@ -1,10 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://cy002wp1rfqi5"]
+[gd_scene load_steps=7 format=3 uid="uid://cy002wp1rfqi5"]
 
 [ext_resource type="Script" uid="uid://bynhl0y7u25o8" path="res://Scripts/Ingredient Scripts/ingredientStack.gd" id="1_siadw"]
 [ext_resource type="ArrayMesh" uid="uid://s0r2edxspok0" path="res://Art Assets/PlateModelFixed.obj" id="2_siadw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7pwy8"]
 size = Vector3(1, 0.432993, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yb1xg"]
+albedo_color = Color(0.54376, 0.247482, 2.88785e-07, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_siadw"]
+material = SubResource("StandardMaterial3D_yb1xg")
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.7
+radial_segments = 67
+
+[sub_resource type="Skin" id="Skin_toqv3"]
 
 [node name="Plate" type="RigidBody3D" groups=["Ingredient"]]
 script = ExtResource("1_siadw")
@@ -16,3 +28,11 @@ shape = SubResource("BoxShape3D_7pwy8")
 [node name="PlateModelFixed" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 mesh = ExtResource("2_siadw")
+
+[node name="SoupMesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.75, 0, 0, 0, 0.01, 0, 0, 0, 0.75, 0, 0.0470904, 0)
+visible = false
+mesh = SubResource("CylinderMesh_siadw")
+skin = SubResource("Skin_toqv3")
+skeleton = NodePath("")

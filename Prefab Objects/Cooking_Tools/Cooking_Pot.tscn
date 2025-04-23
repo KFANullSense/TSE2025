@@ -11,8 +11,9 @@ height = 0.23
 [sub_resource type="BoxShape3D" id="BoxShape3D_axwdh"]
 size = Vector3(0.772215, 0.487915, 0.576538)
 
-[node name="CookingPot" type="RigidBody3D"]
+[node name="CookingPot" type="RigidBody3D" node_paths=PackedStringArray("fill_meshes")]
 script = ExtResource("1_d0s45")
+fill_meshes = [NodePath("Fill1"), NodePath("Fill2"), NodePath("Fill3")]
 
 [node name="Fill1" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.240214, 0)

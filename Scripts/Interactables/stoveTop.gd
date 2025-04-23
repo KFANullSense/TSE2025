@@ -11,18 +11,21 @@ func _ready() -> void:
 
 func placeItem(itemToPlace) -> bool:
 	if inventory != null:
-		if (inventory is Ingredient and itemToPlace is IngredientStack):
-			itemToPlace.addIngredient(inventory)
-			inventory = null
-			return false
-			
-		elif (inventory is IngredientStack and itemToPlace is Ingredient):
-			inventory.addIngredient(itemToPlace)
-			return true
-		
-		elif (inventory is IngredientStack and itemToPlace is IngredientStack):
-			inventory.addIngredient(itemToPlace)
-			return false
+		if inventory is Ingredient:
+			if (itemToPlace is IngredientStack or itemToPlace is CookingPot):
+				var result = itemToPlace.addIngredient(inventory)
+				if (result == true):
+					inventory = null
+				return false
+				
+		elif inventory is IngredientStack or inventory is CookingPot:
+			if (itemToPlace is Ingredient):
+				var result = inventory.addIngredient(itemToPlace)
+				return result
+				
+			elif (itemToPlace is IngredientStack or itemToPlace is CookingPot):
+				inventory.addIngredient(itemToPlace)
+				return false
 		
 		return false
 		

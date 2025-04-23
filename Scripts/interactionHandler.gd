@@ -25,7 +25,7 @@ func interactAction() -> void:
 		if hit is Ingredient or hit is IngredientStack:
 			if (not holding):
 				pickUp(hit)
-		elif hit is CounterTop:
+		elif hit is CounterTop or hit is StoveTop:
 			if (holding):
 				store(hit)
 			else:

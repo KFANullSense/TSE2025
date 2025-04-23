@@ -5,25 +5,35 @@ class_name CookingPot
 const MAX_ITEMS: int = 3
 const TIME_TO_COOK: float = 15.0
 
-var localIngredients: Array[Ingredient]
-var fill_meshes: Array[MeshInstance3D]
+var localIngredients: Array[Ingredient.IngredientType]
+@export var fill_meshes: Array[MeshInstance3D]
 var cookProgress: float = 0.0
 
 var finishedSoup: CookedFood
 var isCooked = false
 var isOnStove = true
 
-func add_ingredient(ingredientToAdd) -> bool:
+func addIngredient(ingredientToAdd) -> bool:
 	if localIngredients.size() >= MAX_ITEMS:
 		return false
 	
 	if (ingredientToAdd is Ingredient):
+		if isCooked:
+			return false
+		
 		if not ingredientToAdd.is_chopped:
 			return false
 			
-		localIngredients.append(ingredientToAdd)
+		localIngredients.append(ingredientToAdd.ingredient_type)
+		
+		ingredientToAdd.free()
 	
-	if (ingredientToAdd is IngredientStack):
+	elif (ingredientToAdd is IngredientStack):
+		if (isCooked):
+			ingredientToAdd.addIngredient(self)
+				
+			return false
+		
 		if localIngredients.size() + ingredientToAdd.currentIngredients.size() >= MAX_ITEMS:
 			return false
 		
@@ -35,9 +45,12 @@ func add_ingredient(ingredientToAdd) -> bool:
 				return false
 				
 		for localIngredient in ingredientToAdd.currentIngredients:
-			localIngredients.append(localIngredient)
+			localIngredients.append(localIngredient.ingredient_type)
 			
 		ingredientToAdd.removeAllIngredients()
+	
+	else:
+		return false
 	
 	fill_meshes[localIngredients.size() - 1].visible = true
 	return true
@@ -50,8 +63,9 @@ func _process(delta: float) -> void:
 			isCooked = true
 			var finishedIngredientList: Array[Ingredient.IngredientType]
 			for localIngredient in localIngredients:
-				finishedIngredientList.append(localIngredient.ingredient_type)
+				finishedIngredientList.append(localIngredient)
 			finishedSoup = CookedFood.new(CookedFood.FoodType.SOUP, finishedIngredientList)
+			localIngredients = []
 			
 	else:
 		cookProgress = 0
@@ -80,4 +94,5 @@ func clearPot():
 	for fillMesh in fill_meshes:
 		fillMesh.visible = false
 		
+	finishedSoup = null
 	isCooked = false
