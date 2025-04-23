@@ -16,11 +16,14 @@ func checkIfRecipeMatch(inputFood: IngredientStack):
 		return false
 	
 	var ingredientsRemaining = finalItemIngredients.duplicate(true)
+	var skipToNextLoop = false
 	
-	for inputIngredient in inputFood.currentIngredients:
+	for inputIngredient in inputFood.currentIngredients:	
 		for localIngredient in finalItemIngredients:
-			if (inputIngredient.ingredient_type == localIngredient):
+			if (inputIngredient == localIngredient):
 				ingredientsRemaining.erase(localIngredient)
+				break
+		
 				
 	if (ingredientsRemaining.size() == 0):
 		return true

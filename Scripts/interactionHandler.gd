@@ -36,6 +36,11 @@ func interactAction() -> void:
 		elif hit is ProduceBin:
 			if (not holding):
 				produce(hit)
+				
+		elif hit is HandInCounter:
+			if (holding):
+				handIn(hit)
+				
 	else:
 		if (holding):
 			putDown()
@@ -93,6 +98,13 @@ func collectFromCounter(localCounter: CounterTop):
 			
 func produce(localProduceBin):
 	pickUp(localProduceBin.spawnObject())
+				
+func handIn(localCounter: HandInCounter):
+	var result = localCounter.handInItem(inventory)
+	
+	if result == true:
+		inventory.free()
+		holding = false
 				
 func delete():
 	if (inventory is IngredientStack):

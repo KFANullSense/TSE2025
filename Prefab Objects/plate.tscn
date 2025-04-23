@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cy002wp1rfqi5"]
+[gd_scene load_steps=9 format=3 uid="uid://cy002wp1rfqi5"]
 
 [ext_resource type="Script" uid="uid://bynhl0y7u25o8" path="res://Scripts/Ingredient Scripts/ingredientStack.gd" id="1_siadw"]
 [ext_resource type="ArrayMesh" uid="uid://s0r2edxspok0" path="res://Art Assets/PlateModelFixed.obj" id="2_siadw"]
+[ext_resource type="PackedScene" uid="uid://by02swe31fywh" path="res://Prefab Objects/UI/ingredientDisplay.tscn" id="3_toqv3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7pwy8"]
 size = Vector3(1, 0.432993, 1)
@@ -17,6 +18,9 @@ height = 0.7
 radial_segments = 67
 
 [sub_resource type="Skin" id="Skin_toqv3"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2miyw"]
+viewport_path = NodePath("SubViewportContainer/SpriteViewport")
 
 [node name="Plate" type="RigidBody3D" groups=["Ingredient"]]
 script = ExtResource("1_siadw")
@@ -36,3 +40,7 @@ visible = false
 mesh = SubResource("CylinderMesh_siadw")
 skin = SubResource("Skin_toqv3")
 skeleton = NodePath("")
+
+[node name="IngredientDisplay" parent="." instance=ExtResource("3_toqv3")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.25, 0)
+texture = SubResource("ViewportTexture_2miyw")

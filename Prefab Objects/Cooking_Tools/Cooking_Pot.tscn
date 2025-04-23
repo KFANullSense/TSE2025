@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bktxv0k6fxd45"]
+[gd_scene load_steps=9 format=3 uid="uid://bktxv0k6fxd45"]
 
 [ext_resource type="PackedScene" uid="uid://c1u5xpq3ransc" path="res://Art Assets/CookPot.fbx" id="1_5pn2d"]
 [ext_resource type="Script" uid="uid://chtwmuxnq4wn0" path="res://Scripts/Interactables/cooking_Pot.gd" id="1_d0s45"]
+[ext_resource type="PackedScene" uid="uid://by02swe31fywh" path="res://Prefab Objects/UI/ingredientDisplay.tscn" id="3_axwdh"]
+[ext_resource type="PackedScene" uid="uid://bp8rdymq08lfc" path="res://Prefab Objects/UI/progressBar.tscn" id="4_8h48u"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_d0s45"]
 top_radius = 0.25
@@ -11,17 +13,23 @@ height = 0.23
 [sub_resource type="BoxShape3D" id="BoxShape3D_axwdh"]
 size = Vector3(0.772215, 0.487915, 0.576538)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_axwdh"]
+viewport_path = NodePath("SubViewportContainer/SpriteViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8h48u"]
+viewport_path = NodePath("SubViewportContainer/BarViewport")
+
 [node name="CookingPot" type="RigidBody3D" node_paths=PackedStringArray("fill_meshes")]
 script = ExtResource("1_d0s45")
 fill_meshes = [NodePath("Fill1"), NodePath("Fill2"), NodePath("Fill3")]
 
 [node name="Fill1" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.240214, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.123733, 0)
 visible = false
 mesh = SubResource("CylinderMesh_d0s45")
 
 [node name="Fill2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.274297, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.213555, 0)
 visible = false
 mesh = SubResource("CylinderMesh_d0s45")
 
@@ -36,3 +44,11 @@ transform = Transform3D(110, 0, 0, 0, 110, 0, 0, 0, 110, 0, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00584888, 0.256042, 0.000183105)
 shape = SubResource("BoxShape3D_axwdh")
+
+[node name="IngredientDisplay" parent="." instance=ExtResource("3_axwdh")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.25, 0)
+texture = SubResource("ViewportTexture_axwdh")
+
+[node name="ProgressBar" parent="." instance=ExtResource("4_8h48u")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.54129, 0)
+texture = SubResource("ViewportTexture_8h48u")

@@ -3,12 +3,14 @@ extends HoldableObject
 class_name IngredientStack
 
 enum StackType {
+	EMPTY,
 	INGREDIENTS,
 	SOUP
 }
 
 var currentIngredients = []
-var localStackType: StackType
+var localStackType: StackType = StackType.EMPTY
+@onready var localIngredientDisplay: IngredientDisplay = get_node("IngredientDisplay")
 
 func addIngredient(ingredientToAdd) -> bool:
 	if (ingredientToAdd is Ingredient):
@@ -22,6 +24,7 @@ func addIngredient(ingredientToAdd) -> bool:
 				ingredientToAdd.linear_velocity = Vector3.ZERO
 				ingredientToAdd.angular_velocity = Vector3.ZERO
 				currentIngredients.append(ingredientToAdd)
+				localIngredientDisplay.updateIngredientSprites(currentIngredients)
 				return true
 		
 	elif (ingredientToAdd is CookingPot):
@@ -30,40 +33,62 @@ func addIngredient(ingredientToAdd) -> bool:
 			currentIngredients = ingredientToAdd.finishedSoup.childIngredients
 			get_node("%SoupMesh").visible = true
 			ingredientToAdd.clearPot()
+			localIngredientDisplay.updateIngredientSprites(currentIngredients)
 			return true
 	
 	elif (ingredientToAdd is IngredientStack):
-		if (localStackType == StackType.INGREDIENTS):
-			if (currentIngredients.size() == 0 and ingredientToAdd.currentIngredients.size() > 0):
-				for otherIngredient in ingredientToAdd.currentIngredients:
-					addIngredient(otherIngredient)
-				
-				ingredientToAdd.currentIngredients = []
-				return true
-		elif (localStackType == StackType.SOUP):
-			if (currentIngredients.size() == 0 and ingredientToAdd.currentIngredients.size() > 0):
-				for otherIngredient in ingredientToAdd.currentIngredients:
-					addIngredient(otherIngredient)
-				
-				ingredientToAdd.currentIngredients = []
-				
-				get_node("%SoupMesh").visible = false
-				ingredientToAdd.get_node("%SoupMesh").visible = true
-				
-				return true
+		if (localStackType == StackType.EMPTY):
+			if (ingredientToAdd.localStackType == StackType.INGREDIENTS):
+				if (currentIngredients.size() == 0 and ingredientToAdd.currentIngredients.size() > 0):
+					for otherIngredient in ingredientToAdd.currentIngredients:
+						addIngredient(otherIngredient)
+					
+					ingredientToAdd.removeAllIngredients(false)
+					return true
 			
-		elif (currentIngredients.size() > 0 and ingredientToAdd.currentIngredients.size() == 0):
-			for localIngredient in currentIngredients:
-				ingredientToAdd.addIngredient(localIngredient)
+			elif (ingredientToAdd.localStackType == StackType.SOUP):
+				if (currentIngredients.size() == 0 and ingredientToAdd.currentIngredients.size() > 0):
+					localStackType = StackType.SOUP
+					currentIngredients = ingredientToAdd.currentIngredients
+					get_node("%SoupMesh").visible = true
+					localIngredientDisplay.updateIngredientSprites(currentIngredients)
+					
+					ingredientToAdd.removeAllIngredients(false)
+					
+					return true
+		
+		elif (ingredientToAdd.localStackType == StackType.EMPTY):
+			if (localStackType == StackType.INGREDIENTS):
+				if (currentIngredients.size() > 0 and ingredientToAdd.currentIngredients.size() == 0):
+					for localIngredient in currentIngredients:
+						ingredientToAdd.addIngredient(localIngredient)
+					
+					removeAllIngredients(false)
+					return true
 			
-			currentIngredients = []
-			return true
+			elif (localStackType == StackType.SOUP):
+				if (currentIngredients.size() > 0 and ingredientToAdd.currentIngredients.size() == 0):
+					ingredientToAdd.localStackType = StackType.SOUP
+					ingredientToAdd.currentIngredients = currentIngredients
+					ingredientToAdd.get_node("%SoupMesh").visible = true
+					ingredientToAdd.localIngredientDisplay.updateIngredientSprites(currentIngredients)
+					
+					removeAllIngredients(false)
+					
+					return true
+		
 	
 	return false
 
-func removeAllIngredients():
+func removeAllIngredients(shouldDeleteIngredients: bool = true):
 	get_node("%SoupMesh").visible = false
 	
-	for ing in currentIngredients:
-		ing.free()
-		currentIngredients = []
+	if (shouldDeleteIngredients):
+		for ing in currentIngredients:
+			ing.free()
+	
+	currentIngredients = []
+	
+	localStackType = StackType.EMPTY
+		
+	localIngredientDisplay.updateIngredientSprites(currentIngredients)

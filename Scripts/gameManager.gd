@@ -1,5 +1,7 @@
 extends Node
 
+signal scoreChanged
+
 enum GameState {
 	MAINMENU,
 	PLAYERSELECT,
@@ -13,6 +15,8 @@ var playerDataList = []
 var playerObjectList = []
 
 var gameScenes: Array[String] = ["res://Game Scenes/Level1.tscn"]
+var gameEndScene: String = "res://Game Scenes/game_end.tscn"
+var mainMenuScene: String = "res://Game Scenes/main_menu.tscn"
 var playerScene = preload("res://Prefab Objects/Player/Player.tscn")
 var recipeUIScene = preload("res://Prefab Objects/UI/recipeUI.tscn")
 var overlayUIScene = preload("res://Prefab Objects/UI/ui_overlay.tscn")
@@ -28,7 +32,8 @@ var currentLevelIndex = 0
 
 var currentGameUI = null
 
-var timeBetweenRecipes: float = 10
+var timeBetweenRecipes: float = 30
+var currentScore = 0
 
 func AddPlayerToList(playerToAdd):
 	if (playerToAdd is not playerData):
@@ -53,6 +58,8 @@ func StartGame(sceneIndex: int):
 		push_warning("GameManager: Attempting to start game from an invalid game state.")
 		return
 		
+	ClearGameObjects()
+	
 	CreatePlayerInputMaps()
 	get_tree().change_scene_to_file(gameScenes[sceneIndex])
 	currentGameUI = overlayUIScene.instantiate()
@@ -133,5 +140,52 @@ func StartRecipeLoop():
 		
 		await get_tree().create_timer(timeBetweenRecipes).timeout
 	
+func HandInRecipe(itemListToCheck):
+	var result = CheckRecipeAgainstList(itemListToCheck)
+	
+	if (result == true):
+		CompleteRecipe()
+		
+	else:
+		FailRecipe()
+	
+func CheckRecipeAgainstList(itemListToCheck):
+	for localRecipe in currentRecipeList:
+		if (localRecipe.checkIfRecipeMatch(itemListToCheck)):
+			localRecipe.recipeUIObject.free()
+			currentRecipeList.erase(localRecipe)
+			return true
+			
+	return false
+	
+func CompleteRecipe():
+	currentScore += 20
+	scoreChanged.emit()
+
+func FailRecipe():
+	currentScore -= 10
+	scoreChanged.emit()
+	
 func EndGame():
 	UpdateGameState(GameState.GAMEEND)
+	ClearGameObjects()
+	get_tree().change_scene_to_file(gameEndScene)
+
+func ClearGameObjects():
+	currentRecipeList = []
+	if (currentGameTimer != null):
+		currentGameTimer.free()
+	if (currentGameUI != null):
+		currentGameUI.free()
+	
+func ClearPlayerData():
+	currentScore = 0
+	ClearTemporaryInputs()
+	playerDataList = []
+	playerObjectList = []
+
+func ReturnToMainMenu():
+	ClearGameObjects()
+	ClearPlayerData()
+	UpdateGameState(GameState.MAINMENU)
+	get_tree().change_scene_to_file(mainMenuScene)

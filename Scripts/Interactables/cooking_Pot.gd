@@ -13,6 +13,12 @@ var finishedSoup: CookedFood
 var isCooked = false
 var isOnStove = true
 
+@onready var localIngredientDisplay: IngredientDisplay = get_node("IngredientDisplay")
+@onready var localProgressBar: ProgressBar = get_node("ProgressBar").get_node("%BarViewport/ProgressBar")
+
+func _ready() -> void:
+	localProgressBar.visible = false
+
 func addIngredient(ingredientToAdd) -> bool:
 	if localIngredients.size() >= MAX_ITEMS:
 		return false
@@ -52,25 +58,32 @@ func addIngredient(ingredientToAdd) -> bool:
 	else:
 		return false
 	
+	localIngredientDisplay.updateIngredientSprites(localIngredients)
 	fill_meshes[localIngredients.size() - 1].visible = true
 	return true
 
 func _process(delta: float) -> void:
 	if (localIngredients.size() > 0 and isCooked == false and isOnStove):
+		localProgressBar.visible = true
+		localProgressBar.value = cookProgress / TIME_TO_COOK
+		
 		cookProgress += delta
 		
 		if (cookProgress > TIME_TO_COOK):
+			localProgressBar.visible = false
 			isCooked = true
 			var finishedIngredientList: Array[Ingredient.IngredientType]
 			for localIngredient in localIngredients:
 				finishedIngredientList.append(localIngredient)
 			finishedSoup = CookedFood.new(CookedFood.FoodType.SOUP, finishedIngredientList)
+			set_fill_color("onion")
 			localIngredients = []
 			
 	else:
 		cookProgress = 0
+		localProgressBar.visible = false
 
-func set_fill_color(mesh: MeshInstance3D, type: String):
+func set_fill_color(type: String):
 	var color := Color.WHITE
 
 	match type.to_lower():
@@ -82,17 +95,20 @@ func set_fill_color(mesh: MeshInstance3D, type: String):
 			color = Color.ORANGE
 		"lettuce":
 			color = Color(0.2, 0.6, 0.2) # Green
-		_:
+		"blank":
 			color = Color.LIGHT_GRAY
 
 	var mat := StandardMaterial3D.new()
 	mat.albedo_color = color
-	mesh.set_surface_override_material(0, mat)
+	for fillMesh in fill_meshes:
+		fillMesh.set_surface_override_material(0, mat)
 
 func clearPot():
 	localIngredients = []
 	for fillMesh in fill_meshes:
 		fillMesh.visible = false
+		fillMesh.set_surface_override_material(0, null)
 		
 	finishedSoup = null
 	isCooked = false
+	localIngredientDisplay.updateIngredientSprites(localIngredients)

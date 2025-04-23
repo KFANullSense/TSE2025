@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://coqlbo3wkm3r"]
+[gd_scene load_steps=8 format=3 uid="uid://coqlbo3wkm3r"]
 
 [ext_resource type="PackedScene" uid="uid://dko6f4vllq8kr" path="res://Prefab Objects/CounterTops/counter.tscn" id="1_e0lpf"]
 [ext_resource type="Script" uid="uid://cdaxogjhmuo5h" path="res://Scripts/Interactables/chopping_Counter.gd" id="1_rl2r5"]
 [ext_resource type="PackedScene" uid="uid://61sco4pgv044" path="res://Art Assets/CuttingBoard.fbx" id="2_rl2r5"]
 [ext_resource type="PackedScene" uid="uid://dvomopr0i8nqo" path="res://Art Assets/Knife.fbx" id="3_3ewtu"]
+[ext_resource type="PackedScene" uid="uid://bp8rdymq08lfc" path="res://Prefab Objects/UI/progressBar.tscn" id="5_3ewtu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ojr0l"]
 size = Vector3(1, 0.676, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ojr0l"]
+viewport_path = NodePath("SubViewportContainer/BarViewport")
 
 [node name="CuttingCounter" type="StaticBody3D"]
 script = ExtResource("1_rl2r5")
@@ -23,3 +27,7 @@ transform = Transform3D(80, 0, 0, 0, 80, 0, 0, 0, 80, -0.031107, 0.510285, -0.00
 
 [node name="Knife" parent="." instance=ExtResource("3_3ewtu")]
 transform = Transform3D(81.2671, 0, 38.6737, 0, 90, 0, -38.6737, 0, 81.2671, 0.134782, 0.536941, -0.0151898)
+
+[node name="ProgressBar" parent="." instance=ExtResource("5_3ewtu")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.25677, 0)
+texture = SubResource("ViewportTexture_ojr0l")

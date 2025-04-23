@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://xvqnqlnuf1f4"]
+
+[ext_resource type="Script" uid="uid://mmnv5vcyhyqm" path="res://Scripts/handInCounter.gd" id="1_jopc6"]
+[ext_resource type="PackedScene" uid="uid://dfvrw4r3k512y" path="res://Art Assets/FoodConveyor.fbx" id="1_lyt07"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jopc6"]
+size = Vector3(2, 0.6, 1)
+
+[node name="HandInCounter" type="StaticBody3D"]
+script = ExtResource("1_jopc6")
+
+[node name="FoodConveyor" parent="." instance=ExtResource("1_lyt07")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_jopc6")
