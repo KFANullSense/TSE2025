@@ -1,0 +1,314 @@
+[gd_scene load_steps=15 format=3 uid="uid://ddatjjuki3t72"]
+
+[ext_resource type="Script" uid="uid://cvbghf1oaf0ra" path="res://Scripts/levelLoadScript.gd" id="1_n8it4"]
+[ext_resource type="PackedScene" uid="uid://bwbtksyfdsxun" path="res://Prefab Objects/CounterTops/bin.tscn" id="2_fycia"]
+[ext_resource type="PackedScene" uid="uid://b1jagbu23s8wx" path="res://Prefab Objects/Produce/onion_bin.tscn" id="3_rxovt"]
+[ext_resource type="PackedScene" uid="uid://bdhg8vb0ht0xs" path="res://Prefab Objects/Produce/tomato_bin.tscn" id="4_r2pxf"]
+[ext_resource type="PackedScene" uid="uid://duvs3w788prax" path="res://Prefab Objects/Produce/mushroom_bin.tscn" id="5_fycia"]
+[ext_resource type="PackedScene" uid="uid://dkjudv3iwouwi" path="res://Prefab Objects/CounterTops/plateHolder.tscn" id="5_gu0jb"]
+[ext_resource type="PackedScene" uid="uid://coqlbo3wkm3r" path="res://Prefab Objects/CounterTops/Cutting_Counter.tscn" id="6_yirvp"]
+[ext_resource type="PackedScene" uid="uid://b4o2vw782iyp4" path="res://Prefab Objects/CounterTops/cooker.tscn" id="7_fvn16"]
+[ext_resource type="Script" uid="uid://d2bqxskn1ipo0" path="res://Scripts/Interactables/stoveTop.gd" id="8_vvpc7"]
+[ext_resource type="PackedScene" uid="uid://xvqnqlnuf1f4" path="res://Prefab Objects/hand_in_counter.tscn" id="9_1b2l7"]
+[ext_resource type="PackedScene" uid="uid://dko6f4vllq8kr" path="res://Prefab Objects/CounterTops/counter.tscn" id="10_kg1l0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4am2"]
+albedo_color = Color(0.393086, 0.393086, 0.393085, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_441dw"]
+material = SubResource("StandardMaterial3D_l4am2")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_53ipw"]
+size = Vector3(2.02481, 1, 1.96594)
+
+[node name="Level1" type="Node3D"]
+script = ExtResource("1_n8it4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.442962, 0.896541, 0, -0.896541, 0.442962, -0.220046, 7.60343, 5.717)
+current = true
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(7.00283, 0, 0, 0, 1, 0, 0, 0, 7.52208, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("PlaneMesh_441dw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, -0.00289583, 0, 0, 0, 1.01386, -0.000900269, -0.0275666, 0.00189209)
+shape = SubResource("BoxShape3D_53ipw")
+
+[node name="Bin" parent="." instance=ExtResource("2_fycia")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 3)
+
+[node name="OnionBin" parent="." instance=ExtResource("3_rxovt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 4)
+
+[node name="TomatoBin" parent="." instance=ExtResource("4_r2pxf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 4)
+
+[node name="MushroomBin" parent="." instance=ExtResource("5_fycia")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 4)
+
+[node name="PlateHolder" parent="." instance=ExtResource("5_gu0jb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2)
+
+[node name="CuttingCounter" parent="." instance=ExtResource("6_yirvp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 0, 4)
+
+[node name="CuttingCounter2" parent="." instance=ExtResource("6_yirvp")]
+transform = Transform3D(-1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, -1, -4, 0, 4)
+
+[node name="Cooker" parent="." instance=ExtResource("7_fvn16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
+script = ExtResource("8_vvpc7")
+
+[node name="Cooker2" parent="." instance=ExtResource("7_fvn16")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2)
+script = ExtResource("8_vvpc7")
+
+[node name="HandInCounter" parent="." instance=ExtResource("9_1b2l7")]
+transform = Transform3D(1, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 1, 2.5, 0, -2)
+
+[node name="CounterHolder" type="Node" parent="."]
+
+[node name="Counter2" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="Counter3" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
+
+[node name="Counter4" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="Counter11" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
+
+[node name="Counter5" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Counter6" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Counter7" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="Counter71" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 2)
+
+[node name="Counter72" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1)
+
+[node name="Counter73" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+
+[node name="Counter74" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1)
+
+[node name="Counter75" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 3)
+
+[node name="Counter10" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -2)
+
+[node name="Counter8" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="Counter15" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 2)
+
+[node name="Counter16" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 1)
+
+[node name="Counter19" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 1)
+
+[node name="Counter67" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 2)
+
+[node name="Counter68" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 3)
+
+[node name="Counter69" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 4)
+
+[node name="Counter70" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 5)
+
+[node name="Counter20" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+
+[node name="Counter21" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -1)
+
+[node name="Counter22" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -2)
+
+[node name="Counter23" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -3)
+
+[node name="Counter24" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -4)
+
+[node name="Counter25" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -4)
+
+[node name="Counter26" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
+
+[node name="Counter27" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -4)
+
+[node name="Counter28" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
+
+[node name="Counter29" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -4)
+
+[node name="Counter30" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
+
+[node name="Counter31" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -4)
+
+[node name="Counter32" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="Counter33" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -4)
+
+[node name="Counter34" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
+
+[node name="Counter35" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -4)
+
+[node name="Counter36" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -4)
+
+[node name="Counter37" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -4)
+
+[node name="Counter38" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -4)
+
+[node name="Counter39" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -4)
+
+[node name="Counter40" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -4)
+
+[node name="Counter41" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -3)
+
+[node name="Counter42" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -2)
+
+[node name="Counter43" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -1)
+
+[node name="Counter44" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="Counter45" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 1)
+
+[node name="Counter46" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 2)
+
+[node name="Counter47" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 3)
+
+[node name="Counter48" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4)
+
+[node name="Counter49" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 5)
+
+[node name="Counter50" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 6)
+
+[node name="Counter51" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 6)
+
+[node name="Counter52" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 6)
+
+[node name="Counter53" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 6)
+
+[node name="Counter54" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 6)
+
+[node name="Counter55" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 6)
+
+[node name="Counter56" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
+
+[node name="Counter57" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 6)
+
+[node name="Counter58" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+
+[node name="Counter59" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 6)
+
+[node name="Counter60" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 6)
+
+[node name="Counter61" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 6)
+
+[node name="Counter62" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 6)
+
+[node name="Counter64" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 6)
+
+[node name="Counter65" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 6)
+
+[node name="Counter66" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 6)
+
+[node name="Counter63" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 6)
+
+[node name="Counter17" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+
+[node name="Counter18" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
+
+[node name="Counter9" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="Counter12" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 4)
+
+[node name="Counter13" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 4)
+
+[node name="Counter14" parent="CounterHolder" instance=ExtResource("10_kg1l0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 4)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.288547, 0.957466, 0, -0.957466, 0.288547, 0, 4, 0)
+
+[node name="SpawnPoints" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Node3D" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+
+[node name="Node3D2" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 2)
+
+[node name="Node3D3" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+
+[node name="Node3D4" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)

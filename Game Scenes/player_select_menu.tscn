@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://crf4jytp017jl"]
+[gd_scene load_steps=4 format=3 uid="uid://crf4jytp017jl"]
 
 [ext_resource type="Script" uid="uid://c8tfhfmuakyy8" path="res://Scripts/playerSelection.gd" id="1_p0kxw"]
+[ext_resource type="Script" uid="uid://w58lvven6o71" path="res://Scripts/levelSelector.gd" id="2_7vq08"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5bnxi"]
 font_size = 48
@@ -41,6 +42,43 @@ grow_vertical = 2
 text = "Press Start/Enter to toggle ready"
 label_settings = SubResource("LabelSettings_5bnxi")
 
+[node name="LevelNameLabel" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -282.5
+offset_top = -38.0
+offset_right = 282.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Level 1"
+label_settings = SubResource("LabelSettings_5bnxi")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_7vq08")
+
+[node name="RightButton" type="Button" parent="CanvasLayer/LevelNameLabel"]
+unique_name_in_owner = true
+offset_left = 506.5
+offset_top = 4.0
+offset_right = 565.5
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 32
+text = ">"
+
+[node name="LeftButton" type="Button" parent="CanvasLayer/LevelNameLabel"]
+unique_name_in_owner = true
+offset_left = 0.5
+offset_top = 4.0
+offset_right = 59.5
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 32
+text = "<"
+
 [node name="PlayerUIGrid" type="GridContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
 anchors_preset = 7
@@ -55,3 +93,6 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/h_separation = 150
 columns = 4
+
+[connection signal="pressed" from="CanvasLayer/LevelNameLabel/RightButton" to="CanvasLayer/LevelNameLabel" method="changeLevelNum" binds= [true]]
+[connection signal="pressed" from="CanvasLayer/LevelNameLabel/LeftButton" to="CanvasLayer/LevelNameLabel" method="changeLevelNum" binds= [false]]

@@ -1,4 +1,4 @@
-extends HoldableObject
+extends Node
 
 class_name IngredientStack
 

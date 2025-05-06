@@ -24,3 +24,17 @@ func chopIngredient():
 				
 			localProgressBar.visible = false
 			inventory.finish_chopping()
+			chop_progress = 0
+			
+func placeItem(itemToPlace) -> bool:
+	if (chop_progress != 0):
+		return false
+	
+	return super(itemToPlace)
+
+func pickupItem():
+	if (chop_progress != 0):
+		return null
+	
+	chop_progress = 0
+	return super()

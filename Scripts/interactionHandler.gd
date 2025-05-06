@@ -7,22 +7,23 @@ var inventory = null;
 var holding = false;
 
 func _input(event: InputEvent) -> void:
-	var inputDeviceID = StaticFunctions.adjustForKeyboardInput(event)
-	
-	if inputDeviceID != get_parent().localDeviceID or get_parent().localDeviceID == -1:
-		return
-
-	if (Input.is_action_just_pressed("Interact" + str(get_parent().localDeviceID))):
-		interactAction()
+	if (get_parent().canMove):
+		var inputDeviceID = StaticFunctions.adjustForKeyboardInput(event)
 		
-	if (Input.is_action_just_pressed("use" + str(get_parent().localDeviceID))):
-		useAction()
+		if inputDeviceID != get_parent().localDeviceID or get_parent().localDeviceID == -1:
+			return
+
+		if (Input.is_action_just_pressed("Interact" + str(get_parent().localDeviceID))):
+			interactAction()
+			
+		if (Input.is_action_just_pressed("use" + str(get_parent().localDeviceID))):
+			useAction()
 
 func interactAction() -> void:
 	if (is_colliding()):
 		var hit = get_collider()
 		
-		if hit is Ingredient or hit is IngredientStack:
+		if hit is Ingredient or hit is IngredientStack or hit is CookingPot:
 			if (not holding):
 				pickUp(hit)
 		elif hit is CounterTop or hit is StoveTop:

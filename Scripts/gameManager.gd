@@ -14,7 +14,7 @@ enum GameState {
 var playerDataList = []
 var playerObjectList = []
 
-var gameScenes: Array[String] = ["res://Game Scenes/Level1.tscn"]
+var gameScenes: Array[String] = ["res://Game Scenes/Level1.tscn", "res://Game Scenes/Level2.tscn", "res://Game Scenes/Level3.tscn"]
 var gameEndScene: String = "res://Game Scenes/game_end.tscn"
 var mainMenuScene: String = "res://Game Scenes/main_menu.tscn"
 var playerScene = preload("res://Prefab Objects/Player/Player.tscn")

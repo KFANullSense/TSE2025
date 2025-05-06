@@ -15,6 +15,9 @@ func _ready() -> void:
 	
 	##Hide ready text
 	get_node("%PressToReadyLabel").hide()
+	
+	get_node("%LevelNameLabel").hide()
+	
 
 ##When input is detected,
 func _input(event: InputEvent) -> void:
@@ -52,8 +55,10 @@ func _input(event: InputEvent) -> void:
 		##If there is at least one player, show the ready text
 		if (get_node("%PlayerUIGrid").get_child_count() >= 1):
 			get_node("%PressToReadyLabel").show()
+			get_node("%LevelNameLabel").show()
 		else:
 			get_node("%PressToReadyLabel").hide()
+			get_node("%LevelNameLabel").hide()
 
 ##This function finds the earliest empty player slot and adds the given device ID
 func addPlayerToList(deviceID: int) -> int:
