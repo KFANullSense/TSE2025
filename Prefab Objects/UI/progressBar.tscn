@@ -12,6 +12,7 @@ billboard = 1
 texture = SubResource("ViewportTexture_5s15q")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+clip_children = 1
 offset_top = 1.0
 offset_right = 256.0
 offset_bottom = 257.0

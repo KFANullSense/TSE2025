@@ -60,6 +60,10 @@ func addIngredient(ingredientToAdd) -> bool:
 	
 	localIngredientDisplay.updateIngredientSprites(localIngredients)
 	fill_meshes[localIngredients.size() - 1].visible = true
+	
+	if (cookProgress > 0):
+		cookProgress = clampf(cookProgress - (TIME_TO_COOK / 6), 0, TIME_TO_COOK)
+	
 	return true
 
 func _process(delta: float) -> void:

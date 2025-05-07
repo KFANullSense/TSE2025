@@ -83,7 +83,7 @@ func addIngredient(ingredientToAdd) -> bool:
 func removeAllIngredients(shouldDeleteIngredients: bool = true):
 	get_node("%SoupMesh").visible = false
 	
-	if (shouldDeleteIngredients):
+	if (shouldDeleteIngredients and localStackType == StackType.INGREDIENTS):
 		for ing in currentIngredients:
 			ing.free()
 	

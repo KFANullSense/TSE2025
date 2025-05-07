@@ -63,6 +63,7 @@ script = ExtResource("2_7vq08")
 
 [node name="RightButton" type="Button" parent="CanvasLayer/LevelNameLabel"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 506.5
 offset_top = 4.0
 offset_right = 565.5
@@ -72,6 +73,7 @@ text = ">"
 
 [node name="LeftButton" type="Button" parent="CanvasLayer/LevelNameLabel"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 0.5
 offset_top = 4.0
 offset_right = 59.5
